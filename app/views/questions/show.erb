@@ -1,0 +1,20 @@
+<div>
+<h1> <%= @question.title %> </h1>
+
+<p> <%= @question.content %></p>
+
+</div>
+
+<a href="#">Add a Comment</a>
+
+
+
+<form id="comment_form" action="/questions" method="POST">
+  <div>
+    <textarea rows="5" cols="30" name="comment[content]" placeholder="Content"></textarea>
+  </div>
+
+  <div>
+    <input type="submit" value="Submit post">
+  </div>
+</form>
