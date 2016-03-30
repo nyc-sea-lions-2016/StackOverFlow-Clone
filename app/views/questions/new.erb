@@ -1,0 +1,21 @@
+<% if @errors %>
+  <span> Please fix the following errors:</span>
+  <ul class="error-list">
+    <%@errors.each do |error|%>
+      <li> <%= error %> </li>
+    <% end %>
+  </ul>
+<% end%>
+
+<form action="/questions" method="POST">
+  <div>
+    <input type="text" name="question[title]" placeholder="Title">
+  </div>
+  <div>
+    <textarea rows="5" cols="30" name="question[content]" placeholder="Content"></textarea>
+  </div>
+
+  <div>
+    <input type="submit" value="Submit post">
+  </div>
+</form>
