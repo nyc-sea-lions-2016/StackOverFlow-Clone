@@ -7,6 +7,7 @@ end
 post '/users' do
   @user = User.new(params[:user])
   if @user.save
+    sessions[:user_session_id] = user.id
     redirect '/users/:id' #Can only be defined when Brian/Alex are finished
   else
     @errors = @user.errors.full_messages
