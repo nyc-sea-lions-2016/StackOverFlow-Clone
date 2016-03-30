@@ -4,7 +4,19 @@
 <h1> <%= @question.title %> </h1>
 
 <p> <%= @question.content %></p>
-<a id='#new_comment_button' href="/comment/<%= @question.id %>">Comment</a>
+
+<button id='new_comment_button'>Comment</button>
+
+<form id="new_comment_form" class="hidden" action="/questions" method="POST">
+  <div>
+    <textarea rows="5" cols="30" name="comment[content]" placeholder="Content"></textarea>
+  </div>
+
+  <div>
+    <input type="submit" value="Submit post">
+  </div>
+</form>
+
 </div>
 
  <!-- Load answers for this questions -->
@@ -35,15 +47,7 @@
 
 
 
-<form class="hidden" action="/questions" method="POST">
-  <div>
-    <textarea rows="5" cols="30" name="comment[content]" placeholder="Content"></textarea>
-  </div>
 
-  <div>
-    <input type="submit" value="Submit post">
-  </div>
-</form>
 
 
 
