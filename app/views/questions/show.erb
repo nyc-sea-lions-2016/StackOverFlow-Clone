@@ -1,17 +1,41 @@
+<h3>Questions</h3>
+
 <div>
 <h1> <%= @question.title %> </h1>
 
 <p> <%= @question.content %></p>
-
+<a id='#new_comment_button' href="/comment/<%= @question.id %>">Comment</a>
 </div>
 
  <!-- Load answers for this questions -->
 
-<a id='#new_comment_button' href="#">Add a Comment</a>
+
+<h3>Answers</h3>
+
+<% @answers.each do |answer| %>
+
+<ul>
+  <li><%= answer.content %></li>
+</ul>
+
+<a id='#new_comment_button' href="/comment/<%= @question.id %>">Comment</a>
+<% end %>
+
+
+<form action="/questions/<%= @question.id %>/answers/new" method="POST">
+    <textarea rows="5" cols="30" name="answer[content]" placeholder="Content"></textarea>
+  </div>
+
+  <div>
+    <input type="submit" value="Submit post">
+  </div>
+</form>
 
 
 
-<form id="comment_form" action="/questions" method="POST">
+
+
+<form class="hidden" action="/questions" method="POST">
   <div>
     <textarea rows="5" cols="30" name="comment[content]" placeholder="Content"></textarea>
   </div>
@@ -20,3 +44,7 @@
     <input type="submit" value="Submit post">
   </div>
 </form>
+
+
+
+
