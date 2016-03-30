@@ -5,6 +5,4 @@ class Answer < ActiveRecord::Base
   has_many :comments, as: :commentable
 
   validates :content, presence: true
-  accepts_nested_attributes_for :comments
-  accepts_nested_attributes_for :votes
 end
