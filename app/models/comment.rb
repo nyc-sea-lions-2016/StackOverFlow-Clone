@@ -4,4 +4,7 @@ class Comment < ActiveRecord::Base
   belongs_to :answer
   has_many :votes, as: :votable
   belongs_to :commentable, polymorphic: true
+
+  validates :content, presence: true
+  validates :title, presence: true
 end
