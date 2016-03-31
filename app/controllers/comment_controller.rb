@@ -1,10 +1,11 @@
 
 post '/comments' do
   @question = Question.find_by(id: params[:question][:question_id])
-  @comment = Comment.new(content: params[:comment][:content])
+  @comment = @question.comments.new(params[:comment])
   if @comment.save
-    erb :'/questions/show'
+
+    redirect "/questions/#{@question.id}"
   else
-    ###
+    ### NOT SURE WHEN IT WOULD FAIL
   end
 end
