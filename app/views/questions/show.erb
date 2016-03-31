@@ -49,8 +49,8 @@
     <% if logged_in? %>
       <button id='new_comment_button'>Comment</button>
 
-      <!-- trying to delete answers -->
-
+      <!-- deleting answers -->
+      
       <form action="/answers/<%= answer.id %>" method="post">
         <input type="hidden" name="_method" value="delete">
         <input type="submit" value="Delete">

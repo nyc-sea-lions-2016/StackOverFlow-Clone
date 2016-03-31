@@ -3,6 +3,7 @@ get '/answers/new' do
 end
 
 post '/answers' do
+  binding.pry
   @answer = Answer.new(params[:answer])
   if @answer.save
     #REDIRECT TO THE CURRENT QUESTION PAGE
