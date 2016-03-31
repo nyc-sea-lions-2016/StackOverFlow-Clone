@@ -14,7 +14,7 @@ get '/questions/:id' do
   end
   @answers = @question.answers
   @all_comments = @question.comments
-  # binding.pry
+
   # @all_answer_comments = @answers.comments
   erb :'questions/show'
 end
@@ -23,6 +23,7 @@ post '/questions' do
   @question = Question.new(params[:question])
   if @question.save
   # binding.pry
+
     redirect "/questions/#{@question.id}"
   else
     @errors = @question.errors.full_messages
@@ -46,6 +47,31 @@ put '/questions/:id' do
     erb :'questions/edit'
   end
 end
+
+
+delete '/questions/:id' do
+  @question = Question.find(params[:id])
+  if @question.user_id == session[:user_session_id]
+    @question.destroy
+    redirect "/questions/#{@question.id}"
+  else
+    # raise error
+  end
+end
+
+
+delete '/answers/:id' do
+  # binding.pry
+  answer = Answer.find(params[:id])
+  question = answer.question
+  if answer.user_id == session[:user_session_id]
+    answer.destroy
+    redirect "/questions/#{question.id}"
+  else
+    # raise error
+  end
+end
+
 
 
 
