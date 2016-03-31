@@ -20,11 +20,10 @@
 
   <tbody>
     <tr>
-      <td>Votes</td>
-      <td>Answers</td>
-      <td>Views</td>
+      <td><p><%= question.points %> </p>votes</td>
+      <td> <p><%= question.answers.count %></p>Answers</td>
+<!--       <td>Views</td> -->
       <td><a href="/questions/<%= question.id %>"><%= question.title %></a></td>
-
       <% if logged_in? %>
       <td>Asked by  <%= @user.username %></td>
       <% end %>
