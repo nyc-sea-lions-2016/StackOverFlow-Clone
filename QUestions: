@@ -1,0 +1,4 @@
+Questions:
+
+SHOW PAGE FOR THE QUESTION COMMENTS
+<%= erb :'_comments', locals:{question: @question}, layout: false %>
