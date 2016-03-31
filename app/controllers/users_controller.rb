@@ -1,9 +1,11 @@
-#Registration
 
+#Registration path
 get '/users/new' do
   erb :'/users/new'
 end
 
+
+#Registration for new user
 post '/users' do
   user = User.new(params[:user])
   if user.save
@@ -16,11 +18,11 @@ post '/users' do
 end
 
 #Login
-
 get '/login' do
   erb :'sessions/new'
 end
 
+#Create a session for login user
 post '/login' do
   user = User.find_by(email: params[:user][:email])
   if user && user.authenticate(params[:user][:password])
@@ -32,8 +34,8 @@ post '/login' do
   end
 end
 
-#Logout
 
+#Logout
 get '/logout' do
   session.clear
   redirect '/'

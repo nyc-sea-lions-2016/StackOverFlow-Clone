@@ -1,43 +1,71 @@
-<h3>Questions</h3>
-
-<div>
-  <div id='question_container'>
+<div id='question_container'>
   <h1> <%= @question.title %> </h1>
 
   <p> <%= @question.content %></p>
 
   <a href=''
 </div>
-<div id ='question_comment'></div>
 
-<button id='new_comment_button'>Comment</button>
-
-<%= erb :'_comments', locals:{question: @question}, layout: false %>
-
-</div>
-
- <!-- Load answers for this questions -->
-
-<h3>Answers</h3>
-
-<% @answers.each do |answer| %>
-
+<% if @all_comments %>
+<div id='question_comment'>
 <ul>
-  <li><%= answer.content %></li>
+  <% @all_comments.reverse.each do |comment| %>
+    <li><%= comment.content %></li>
+  <% end %>
 </ul>
-
+</div>
+<% end %>
+<% if logged_in? %>
 <button id='new_comment_button'>Comment</button>
-
 <% end %>
 
 
+<!-- Need to use the ajax partial -->
+
+<form id="new_comment_form" class="hidden" action="/comments" method="POST">
+  <input type ='hidden' name='question[question_id]' value="<%=@question.id%>">
+  <input type="hidden" name="comment[user_id]" value="<%=session[:user_session_id]%>">
+    <textarea rows="5" cols="30" name="comment[content]" placeholder="Comment"></textarea>
+    <input type="submit" value="Comment">
+</form>
+
+
+
+
+
+ <!-- Load answers for this questions -->
+
+<h6><%= @answers.count %> Answers</h6><br>
+
+<ul>
+  <% @answers.each do |answer| %>
+  <li><%= answer.content %></li>
+  <% end %>
+</ul>
+
+
+
+<!-- NEED TO FIGURE OUT HOW TO GET THE ANSWERS TO HAVE MANY COMMENTS -->
+
+<% if @answers.count == 1 && logged_in? %>
+<button id='new_answer_button'>Comment</button>
+<% end %>
+
+<form id="new_answer_form" class="hidden" action="/comments" method="POST">
+  <input type ='hidden' name='question[question_id]' value="<%=@question.id%>">
+  <input type="hidden" name="comment[user_id]" value="<%=session[:user_session_id]%>">
+    <textarea rows="5" cols="30" name="comment[content]" placeholder="Comment"></textarea>
+    <input type="submit" value="Comment">
+</form>
+
+<h3> Your Answer </h3><br>
+
+<% if @errors %>
+  <p><%= @errors %></p>
+<% end %>
 <form action="/questions/<%= @question.id %>/answers/new" method="POST">
     <textarea rows="5" cols="30" name="answer[content]" placeholder="Content"></textarea>
-  </div>
-
-  <div>
     <input type="submit" value="Submit post">
-  </div>
 </form>
 
 
