@@ -20,14 +20,9 @@
 
   <tbody>
     <tr>
-     <td><a href='/votes/<%= question.id %>' class="fa fa-sort-desc fa-2x vote-button"></a><br>
-      <span class='points' ><%= question.points %></span><br>
-
-      <a href='/votes/reduce/<%= question.id %>' class="fa fa-caret-down fa-2x vote-button"></a> </td>
-
-      
-      <td>Answers</td>
-      <td>Views</td>
+      <td><p><%= question.points %> </p>votes</td>
+      <td> <p><%= question.answers.count %></p>Answers</td>
+<!--       <td>Views</td> -->
       <td><a href="/questions/<%= question.id %>"><%= question.title %></a></td>
       <% if logged_in? %>
       <td>Asked by  <%= @user.username %></td>
