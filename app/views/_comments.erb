@@ -1,6 +1,9 @@
 <form id="new_comment_form" class="hidden" action="/comments" method="POST">
   <input type ='hidden' name='question[question_id]' value="<%=question.id%>">
   <input type="hidden" name="comment[user_id]" value="<%=session[:user_session_id]%>">
-    <textarea rows="5" cols="30" name="comment[content]" placeholder="Comment"></textarea>
-    <input type="submit" value="Comment">
+  <textarea rows="5" cols="30" name="comment[content]" placeholder="Comment"></textarea>
+  <input type="submit" value="Comment">
 </form>
+
+
+

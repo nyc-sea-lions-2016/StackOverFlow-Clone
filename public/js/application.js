@@ -11,34 +11,37 @@ $(document).ready(function() {
     $('#new_answer_form').show()
     // $('#new_comment_button').addClass('hidden')
     $(this).hide()
-
-    // var url = $(this).attr('action')
-    // var id = event.target.action.slice(-1);
-    // var info = $(this).serialize();
-    //   $.ajax({
-    //     type: 'POST',
-    //     url: '/comments',
-    //     data: info
-
-    //   }).done(function(response){
-    //     debugger;
-    //     $('#question_comment').append(response);
-    //   })
   })
 
-  // $('#new_comment_form').on('submit', function(event){
-  //   event.preventDefault();
-  //   // var url = $(this).attr('action')
-  //   var id = event.target.action.slice(-1);
-  //   var info = $(this).serialize();
-  //     $.ajax({
-  //       type: 'POST',
-  //       url: '/comments',
-  //       data: info
+  $('#new_comment_form').on('submit', function(event){
+    event.preventDefault();
+    var info = $(event.target)
+      $.ajax({
+        type: 'POST',
+        url: '/comments',
+        data: info.serialize()
+      }).done(function(response){
+        $('#question_comment').append('<li>' + response + '</li>');
+        //Clear text field
+      })
+  })
 
-  //     }).done(function(response){
-  //       debugger;
-  //       $('#question_comment').append('<li>' + response + '</li>');
-  //     })
-  // })
+  $('#new_comment_for_answer_button').on('click', function(event) {
+    event.preventDefault();
+    $('#new_comment_for_answer_form').show();
+    $(this).hide();
+  });
+
+
+  // $('#new_comment_for_answer_form').on('submit', function(event) {
+  //   event.preventDefault();
+  //   var info = $(event.target);
+  //   // $.ajax({
+  //   //   type: 'POST'
+  //   //   url: '/answers/:id/comments'
+
+  //   // })
+
+  // });
+
 });
