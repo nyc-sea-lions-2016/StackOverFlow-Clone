@@ -1,0 +1,12 @@
+<form id="new_comment_form" class="hidden" action="/comment/<%= @question.id %>" method="POST">
+  <div>
+    <textarea rows="5" cols="30" name="comment[content]" placeholder="Comment"></textarea>
+  </div>
+
+<div>
+  <input type ='hidden' name='question[question_id]' value= <%=@question.id%>>
+</div>
+  <div>
+    <input type="submit" value="Comment">
+  </div>
+</form>

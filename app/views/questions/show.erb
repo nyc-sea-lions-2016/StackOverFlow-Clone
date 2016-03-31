@@ -1,29 +1,20 @@
 <h3>Questions</h3>
 
 <div>
-<h1> <%= @question.title %> </h1>
+  <div id='question_container'>
+  <h1> <%= @question.title %> </h1>
 
-<p> <%= @question.content %></p>
+  <p> <%= @question.content %></p>
+</div>
+<div id ='question_comment'></div>
 
 <button id='new_comment_button'>Comment</button>
 
-<form id="new_comment_form" class="hidden" action="/comment/<%= @question.id %>" method="POST">
-  <div>
-    <textarea rows="5" cols="30" name="comment[content]" placeholder="Comment"></textarea>
-  </div>
-
-<div>
-  <input type ='hidden' name='question_id' value= <%=@question.id%>>
-</div>
-  <div>
-    <input type="submit" value="Comment">
-  </div>
-</form>
+<%= erb :'_comments', locals:{question: question}, layout: false %>
 
 </div>
 
  <!-- Load answers for this questions -->
-
 
 <h3>Answers</h3>
 
