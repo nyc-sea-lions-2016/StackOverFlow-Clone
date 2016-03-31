@@ -11,6 +11,8 @@ get '/questions/:id' do
   @question = Question.find(params[:id])
   @answers = @question.answers
   @all_comments = @question.comments
+  binding.pry
+  # @all_answer_comments = @answers.comments
   erb :'questions/show'
 end
 

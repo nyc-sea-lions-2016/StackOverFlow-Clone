@@ -6,6 +6,6 @@ post '/comments' do
 
     redirect "/questions/#{@question.id}"
   else
-    ### NOT SURE WHEN IT WOULD FAIL
+    ### NOT SURE YET WHEN IT WOULD FAIL
   end
 end

@@ -5,6 +5,12 @@ $(document).ready(function() {
     // $('#new_comment_button').addClass('hidden')
     $(this).hide()
   })
+  $('#new_answer_button').on('click', function(event){
+    event.preventDefault();
+    $('#new_answer_form').show()
+    // $('#new_comment_button').addClass('hidden')
+    $(this).hide()
+  })
 
   // $('#new_comment_form').on('submit', function(event){
   //   event.preventDefault();
