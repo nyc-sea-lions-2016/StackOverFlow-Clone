@@ -1,41 +1,33 @@
 <ul class="vertical medium-horizontal menu">
 
   <% if logged_in? %>
-  <li><a href="#">Logout</a></li>
-  <li><a href="#">Create Question</a></li>
+  <li><a href="/logout">Logout</a></li>
+  <li><a href="/questions/new">Create Question</a></li>
   <% else %>
-  <li><a href="#">Login</a></li>
-  <li><a href="#">Register</a></li>
+  <li><a href="/login">Login</a></li>
+  <li><a href="/users/new">Register</a></li>
   <% end %>
 </ul>
 
 <table>
   <thead>
     <tr>
-      <th width="200">Table Header</th>
-      <th>Table Header</th>
-      <th width="150">Table Header</th>
-      <th width="150">Table Header</th>
+      <th width="200">Top Questions</th>
     </tr>
   </thead>
+
+  <% @questions.each do |question| %>
+
   <tbody>
     <tr>
-      <td>Content Goes Here</td>
-      <td>This is longer content Donec id elit non mi porta gravida at eget metus.</td>
-      <td>Content Goes Here</td>
-      <td>Content Goes Here</td>
-    </tr>
-    <tr>
-      <td>Content Goes Here</td>
-      <td>This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.</td>
-      <td>Content Goes Here</td>
-      <td>Content Goes Here</td>
-    </tr>
-    <tr>
-      <td>Content Goes Here</td>
-      <td>This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.</td>
-      <td>Content Goes Here</td>
-      <td>Content Goes Here</td>
+      <td>Votes</td>
+      <td>Answers</td>
+      <td>Views</td>
+      <td><a href="/questions/<%= question.id %>"><%= question.title %></a></td>
+      <td>Asked by <!-- Enter username using ERB --></td>
     </tr>
   </tbody>
+
+  <% end %>
+
 </table>

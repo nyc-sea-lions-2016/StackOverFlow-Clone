@@ -3,12 +3,12 @@ get '/' do
 end
 
 get '/questions/new' do
-
   erb :'/questions/new'
 end
 
 post '/questions' do
-  @question = Question.new(params[:question])
+  id = session[:current_user_id]
+  @question = Question.new(params[:question], user_id: id)
   if @question.save
     redirect "/questions/#{@question.id}"
   else
