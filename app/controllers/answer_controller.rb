@@ -1,8 +1,7 @@
 post '/questions/:question_id/answers/new' do
   question = Question.find_by(id: params[:question_id])
-  unless !logged_in?
-    @answer = Answer.new(content: params[:answer][:content], question_id: question.id)
-    # binding.pry
+    if logged_in?
+    @answer = Answer.new(content: params[:answer][:content], question_id: question.id, user_id: session[:user_session_id])
     if @answer.save
       redirect "/questions/#{question.id}"
     else
