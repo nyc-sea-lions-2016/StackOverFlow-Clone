@@ -14,7 +14,15 @@
 </div>
 <% end %>
 <% if logged_in? %>
-<button id='new_comment_button'>Comment</button>
+  <button id='new_comment_button'>Comment</button>
+
+<!-- delete question if logged in -->
+  <form action="/questions/<%= @question.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete">
+  </form>
+
+
 <% end %>
 
 
@@ -37,6 +45,15 @@
     <button id='new_comment_for_answer_button'>Comment</button>
   <% end %>
 
+
+  <!-- deleting answers -->
+
+  <form action="/answers/<%= answer.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete">
+  </form>
+
+
   <form id="new_comment_for_answer_form" class="hidden" action="/answers/comments" method="POST">
     <input type ='hidden' name='answer[answer_id]' value="<%=answer.id%>">
     <input type="hidden" name="comment[user_id]" value="<%=session[:user_session_id]%>">
@@ -44,7 +61,6 @@
     <input type="submit" value="Comment">
   </form>
 
-  <% end %>
 
 </div>
 
@@ -60,9 +76,8 @@
 <% end %>
 <form action="/questions/<%= @question.id %>/answers/new" method="POST">
     <textarea rows="5" cols="30" name="answer[content]" placeholder="Content"></textarea>
-    <input type="submit" value="Submit post">
+    <input type="submit" value="Submit Answer">
 </form>
-
 
 
 
