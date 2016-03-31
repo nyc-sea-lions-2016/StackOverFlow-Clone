@@ -1,0 +1,14 @@
+<h1>Edit a Question</h1>
+
+<form id="edit_comment_form" class="hidden" action="/questions/<%= #{question.id} %>/edit" method="POST"> <!-- Have to change this so that it matches a PUT route, figure out why SI is not working -->
+  <div>
+    <textarea rows="5" cols="30" name="comment[content]" placeholder="Comment"></textarea>
+  </div>
+
+<div>
+  <input type ='hidden' name='question[question_id]' value= <%=@question.id%>>
+</div>
+  <div>
+    <input type="submit" value="Comment">
+  </div>
+</form>

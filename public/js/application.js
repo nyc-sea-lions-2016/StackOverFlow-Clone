@@ -18,7 +18,7 @@ $(document).ready(function() {
 
       }).done(function(response){
         debugger;
-        $('#question_comment').append('<li>' + response + '</li>');
+        $('#question_comment').append(response);
       })
   })
 });

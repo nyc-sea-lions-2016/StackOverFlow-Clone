@@ -5,12 +5,14 @@
   <h1> <%= @question.title %> </h1>
 
   <p> <%= @question.content %></p>
+
+  <a href=''
 </div>
 <div id ='question_comment'></div>
 
 <button id='new_comment_button'>Comment</button>
 
-<%= erb :'_comments', locals:{question: question}, layout: false %>
+<%= erb :'_comments', locals:{question: @question}, layout: false %>
 
 </div>
 
