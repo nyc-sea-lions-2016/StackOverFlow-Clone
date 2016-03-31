@@ -33,15 +33,15 @@ $(document).ready(function() {
   });
 
 
-  $('#new_comment_for_answer_form').on('submit', function(event) {
-    event.preventDefault();
-    var info = $(event.target);
-    $.ajax({
-      type: 'POST'
-      url: '/answers/:id/comments'
+  // $('#new_comment_for_answer_form').on('submit', function(event) {
+  //   event.preventDefault();
+  //   var info = $(event.target);
+  //   $.ajax({
+  //     type: 'POST'
+  //     url: '/answers/:id/comments'
 
-    })
+  //   })
 
-  });
+  // });
 
 });
