@@ -5,12 +5,12 @@ get '/users/new' do
 end
 
 post '/users' do
-  @user = User.new(params[:user])
-  if @user.save
-    sessions[:user_session_id] = user.id
-    redirect '/users/:id' #Can only be defined when Brian/Alex are finished
+  user = User.new(params[:user])
+  if user.save
+    session[:user_session_id] = user.id
+    redirect "/"
   else
-    @errors = @user.errors.full_messages
+    @errors = user.errors.full_messages
     erb :'users/new'
   end
 end
@@ -24,7 +24,7 @@ end
 post '/login' do
   user = User.find_by(email: params[:user][:email])
   if user && user.authenticate(params[:user][:password])
-    sessions[:user_session_id] = user.id
+    session[:user_session_id] = user.id
     redirect '/' #Requires index
   else
     @errors = ["Wrong username or password"]
@@ -34,9 +34,9 @@ end
 
 #Logout
 
-post '/logout' do
+get '/logout' do
   session.clear
-  redirect '/' #Requires index
+  redirect '/'
 end
 
 
