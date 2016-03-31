@@ -1,4 +1,3 @@
-
 post '/comments' do
   @question = Question.find_by(id: params[:question][:question_id])
   @comment = @question.comments.new(params[:comment])
