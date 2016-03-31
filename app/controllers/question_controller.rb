@@ -45,6 +45,23 @@ put '/questions/:id' do
 end
 
 
+delete '/questions/:id' do 
+  @question = Question.find(params[:id])
+  @question.destroy
+  redirect '/'
+end
+
+
+delete '/answers/:id' do 
+  # binding.pry
+  answer = Answer.find(params[:id])
+  question = answer.question
+  answer.destroy
+  redirect "/questions/#{question.id}"
+end
+
+
+
 
 
 

@@ -14,7 +14,15 @@
 </div>
 <% end %>
 <% if logged_in? %>
-<button id='new_comment_button'>Comment</button>
+  <button id='new_comment_button'>Comment</button>
+
+<!-- delete question if logged in -->
+  <form action="/questions/<%= @question.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete">
+  </form>
+
+
 <% end %>
 
 
@@ -36,7 +44,21 @@
 
 <ul>
   <% @answers.each do |answer| %>
+
   <li><%= answer.content %></li>
+    <% if logged_in? %>
+      <button id='new_comment_button'>Comment</button>
+
+      <!-- trying to delete answers -->
+
+      <form action="/answers/<%= answer.id %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="Delete">
+      </form>
+
+
+
+    <% end %>
   <% end %>
 </ul>
 
@@ -62,9 +84,8 @@
 <% end %>
 <form action="/questions/<%= @question.id %>/answers/new" method="POST">
     <textarea rows="5" cols="30" name="answer[content]" placeholder="Content"></textarea>
-    <input type="submit" value="Submit post">
+    <input type="submit" value="Submit Answer">
 </form>
-
 
 
 
