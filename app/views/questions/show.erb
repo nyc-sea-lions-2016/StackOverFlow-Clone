@@ -32,18 +32,16 @@
 
  <!-- Load answers for this questions -->
 
-<div id='answer_comment'>
-
-  <h6><%= @answers.count %> Answers</h6><br>
-
-  <ul>
-    <% @answers.each do |answer| %>
-    <li><%= answer.content %></li>
-  </ul>
-
-  <% if @answers.length > 0 && logged_in? %>
-    <button id='new_comment_for_answer_button'>Comment</button>
-  <% end %>
+<h6><%= @answers.count %> Answers</h6><br>
+  <div id='answer_comment'>
+      <ul>
+        <% @answers.each do |answer| %>
+        <li><%= answer.content %></li>
+      </ul>
+    <% if @answers.length > 0 && logged_in? %>
+      <button id="answerId/<%=answer.id%>" class='new_comment_for_answer_button'>Comment</button>
+    <% end %>
+  </div>
 
 
   <!-- deleting answers -->
@@ -54,12 +52,7 @@
   </form>
 
 
-  <form id="new_comment_for_answer_form" class="hidden" action="/answers/comments" method="POST">
-    <input type ='hidden' name='answer[answer_id]' value="<%=answer.id%>">
-    <input type="hidden" name="comment[user_id]" value="<%=session[:user_session_id]%>">
-      <textarea rows="5" cols="30" name="comment[content]" placeholder="Comment"></textarea>
-    <input type="submit" value="Comment">
-  </form>
+<%= erb :'_comments_answer', locals:{answer: answer, comment: @comment}, layout: false %>
 
 <% end %>
 

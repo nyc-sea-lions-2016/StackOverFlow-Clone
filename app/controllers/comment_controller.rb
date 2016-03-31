@@ -12,7 +12,7 @@ post '/answers/comments' do
   @answer = Answer.find(params[:answer][:answer_id])
   @comment = @answer.comments.new(params[:comment])
   if request.xhr? && @comment.save
-    erb :'_answer_comment_content', locals:{comment: @comment}, layout: false
+    erb :'_comments_answer_content', locals:{comment: @comment}, layout: false
   else
     redirect '/'
   end

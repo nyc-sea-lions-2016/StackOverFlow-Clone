@@ -22,26 +22,33 @@ $(document).ready(function() {
         data: info.serialize()
       }).done(function(response){
         $('#question_comment').append('<li>' + response + '</li>');
-        //Clear text field
+        $('#new_comment_form').find('textarea[name="comment[content]"]').val('');
       })
   })
 
-  $('#new_comment_for_answer_button').on('click', function(event) {
+  $('#answer_comment').on('click', '.new_comment_for_answer_button', function(event) { // Make into class
     event.preventDefault();
-    $('#new_comment_for_answer_form').show();
-    $(this).hide();
+    var commentForAnswerButton = $(event.target)
+    commentForAnswerButton.hide();
+    var formId = commentForAnswerButton.attr('id').split('/').slice(-1)[0]
+    debugger;
   });
 
 
-  $('#new_comment_for_answer_form').on('submit', function(event) {
+  $('#answer_comment').on('submit', '.new_comment_for_answer_form', function(event) {
     event.preventDefault();
-    var info = $(event.target);
+    var info = $(event.target)
     $.ajax({
-      type: 'POST'
-      url: '/answers/:id/comments'
-
-    })
-
+      type: 'POST',
+      url: '/answers/comments',
+      data: info.serialize()
+    }).done(function(response){
+    $('#answer_comment').append('<li>' + response + '</li>')
+    $('#new_comment_for_answer_form').find('textarea[name="comment[content]"]').val('');
   });
+
+});
+
+  //Create
 
 });
