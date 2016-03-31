@@ -24,7 +24,10 @@
       <td>Answers</td>
       <td>Views</td>
       <td><a href="/questions/<%= question.id %>"><%= question.title %></a></td>
-      <td>Asked by <!-- Enter username using ERB --></td>
+
+      <% if logged_in? %>
+      <td>Asked by  <%= @user.username %></td>
+      <% end %>
     </tr>
   </tbody>
 

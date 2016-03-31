@@ -1,16 +1,27 @@
-<h3>Questions</h3>
-
 <div>
   <div id='question_container'>
   <h1> <%= @question.title %> </h1>
 
   <p> <%= @question.content %></p>
 </div>
-<div id ='question_comment'></div>
 
+<% if @all_comments %>
+<div id='question_comment'>
+<ul>
+  <% @all_comments.each do |comment| %>
+    <li><%=comment.content %></li>
+  <% end %>
+</ul>
+</div>
+<% end %>
 <button id='new_comment_button'>Comment</button>
 
-<%= erb :'_comments', locals:{question: question}, layout: false %>
+<form id="new_comment_form" class="hidden" action="/comments" method="POST">
+  <input type ='hidden' name='question[question_id]' value="<%=@question.id%>">
+  <input type="hidden" name="comment[user_id]" value="<%=session[:user_session_id]%>">
+    <textarea rows="5" cols="30" name="comment[content]" placeholder="Comment"></textarea>
+    <input type="submit" value="Comment">
+</form>
 
 </div>
 
