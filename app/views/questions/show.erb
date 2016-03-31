@@ -1,14 +1,20 @@
 <h3>Questions</h3>
 
 <div>
-<h1> <%= @question.title %> </h1>
+  <div id='question_container'>
+  <h1> <%= @question.title %> </h1>
 
-<p> <%= @question.content %></p>
-<a id='#new_comment_button' href="/comment/<%= @question.id %>">Comment</a>
+  <p> <%= @question.content %></p>
+</div>
+<div id ='question_comment'></div>
+
+<button id='new_comment_button'>Comment</button>
+
+<%= erb :'_comments', locals:{question: question}, layout: false %>
+
 </div>
 
  <!-- Load answers for this questions -->
-
 
 <h3>Answers</h3>
 
@@ -18,7 +24,8 @@
   <li><%= answer.content %></li>
 </ul>
 
-<a id='#new_comment_button' href="/comment/<%= @question.id %>">Comment</a>
+<button id='new_comment_button'>Comment</button>
+
 <% end %>
 
 
@@ -35,15 +42,7 @@
 
 
 
-<form class="hidden" action="/questions" method="POST">
-  <div>
-    <textarea rows="5" cols="30" name="comment[content]" placeholder="Content"></textarea>
-  </div>
 
-  <div>
-    <input type="submit" value="Submit post">
-  </div>
-</form>
 
 
 
