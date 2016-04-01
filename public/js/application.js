@@ -4,48 +4,42 @@ $(document).ready(function() {
 
   $('#question_comment').on('click', '.new_comment_button', function(event){
     event.preventDefault();
-    var commentForQuestionButton = $(event.target)
-    commentForQuestionButton.hide()
+    $(event.target).hide()
     var formId = $(event.target).data().id
     $('#' + 'question-' + formId).show();
   })
 
   $('#question_comment').on('submit','.new_comment_form', function(event){
     event.preventDefault();
-    var info = $(event.target)
       $.ajax({
         type: 'POST',
         url: '/comments',
-        data: info.serialize()
+        data: $(event.target).serialize()
       }).done(function(response){
         $('#question_comment').prepend('<li>' + response + '</li>');
-        $(event.target).find('textarea[name="comment[content]"]').val('');
+        $(event.target)..hide().siblings('button').show();
       })
   })
 
-
   //ANSWERS
 
-  $('#answer_comment').on('click', '.new_comment_for_answer_button', function(event) { // Make into class
+  $('.answer_comment').on('click', '.new_comment_for_answer_button', function(event) { // Make into class
     event.preventDefault();
-    var commentForAnswerButton = $(event.target)
-    commentForAnswerButton.hide();
+    $(event.target).hide();
     var formId = $(event.target).data().id
     $('#' + 'answer-' + formId).show();
   });
 
 
-  $('#answer_comment').on('submit', '.new_comment_for_answer_form', function(event) {
+  $('.answer_comment').on('submit', '.new_comment_for_answer_form', function(event) {
     event.preventDefault();
-    var info = $(event.target)
     $.ajax({
       type: 'POST',
       url: '/answers/comments',
-      data: info.serialize()
+      data: $(event.target).serialize()
     }).done(function(response){
-    $('#answer_comment').prepend('<li>' + response + '</li>')
-    $(event.target).find('textarea[name="comment[content]"]').val('');
-    debugger;
+    $('.answer_comment').prepend('<li>' + response + '</li>');
+    $(event.target).hide().siblings('button').show();
   });
 
 });

@@ -32,11 +32,10 @@
       <% @answers.each do |answer| %>
       <li><%= answer.content %></li>
     </ul>
-  <div id='answer_comment'>
+  <div class='answer_comment'>
     <% if @answers.length > 0 && logged_in? %>
-    <button data-id="<%= answer.id %>" id="answerId/<%=answer.id%>" class='new_comment_for_answer_button'>Comment</button>
+    <button data-id="<%= answer.id %>" class='new_comment_for_answer_button'>Comment</button>
     <% end %>
-
     <%= erb :'_comments_answer', locals:{answer: answer, comment: @comment}, layout: false %>
   </div>
 </div>
