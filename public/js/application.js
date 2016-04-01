@@ -1,19 +1,16 @@
 $(document).ready(function() {
-  $('#new_comment_button').on('click', function(event){
+
+  //Questions
+
+  $('#question_comment').on('click', '.new_comment_button', function(event){
     event.preventDefault();
-    $('#new_comment_form').show()
-    // $('#new_comment_button').addClass('hidden')
-    $(this).hide()
+    var commentForQuestionButton = $(event.target)
+    commentForQuestionButton.hide()
+    var formId = $(event.target).data().id
+    $('#' + 'question-' + formId).show();
   })
 
-  $('#new_answer_button').on('click', function(event){
-    event.preventDefault();
-    $('#new_answer_form').show()
-    // $('#new_comment_button').addClass('hidden')
-    $(this).hide()
-  })
-
-  $('#new_comment_form').on('submit', function(event){
+  $('#question_comment').on('submit','.new_comment_form', function(event){
     event.preventDefault();
     var info = $(event.target)
       $.ajax({
@@ -21,17 +18,20 @@ $(document).ready(function() {
         url: '/comments',
         data: info.serialize()
       }).done(function(response){
-        $('#question_comment').append('<li>' + response + '</li>');
-        $('#new_comment_form').find('textarea[name="comment[content]"]').val('');
+        $('#question_comment').prepend('<li>' + response + '</li>');
+        $(event.target).find('textarea[name="comment[content]"]').val('');
       })
   })
+
+
+  //ANSWERS
 
   $('#answer_comment').on('click', '.new_comment_for_answer_button', function(event) { // Make into class
     event.preventDefault();
     var commentForAnswerButton = $(event.target)
     commentForAnswerButton.hide();
-    var formId = commentForAnswerButton.attr('id').split('/').slice(-1)[0]
-    debugger;
+    var formId = $(event.target).data().id
+    $('#' + 'answer-' + formId).show();
   });
 
 
@@ -43,12 +43,11 @@ $(document).ready(function() {
       url: '/answers/comments',
       data: info.serialize()
     }).done(function(response){
-    $('#answer_comment').append('<li>' + response + '</li>')
-    $('#new_comment_for_answer_form').find('textarea[name="comment[content]"]').val('');
+    $('#answer_comment').prepend('<li>' + response + '</li>')
+    $(event.target).find('textarea[name="comment[content]"]').val('');
+    debugger;
   });
 
 });
-
-  //Create
 
 });

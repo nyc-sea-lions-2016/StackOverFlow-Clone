@@ -2,57 +2,52 @@
   <h1> <%= @question.title %> </h1>
 
   <p> <%= @question.content %></p>
-</div>
 
-<% if @all_comments %>
-<div id='question_comment'>
-<ul>
-  <% @all_comments.reverse.each do |comment| %>
-    <li><%= comment.content %></li>
-  <% end %>
-</ul>
-</div>
-<% end %>
-<% if logged_in? %>
-  <button id='new_comment_button'>Comment</button>
-
-<!-- delete question if logged in -->
-  <form action="/questions/<%= @question.id %>" method="post">
-    <input type="hidden" name="_method" value="delete">
-    <input type="submit" value="Delete">
-  </form>
-
-
-<% end %>
-
-
-<!-- Need to use the ajax partial -->
-
-  <%= erb :'_comments', locals:{question: @question, comment: @comment}, layout: false %>
-
- <!-- Load answers for this questions -->
-
-<h6><%= @answers.count %> Answers</h6><br>
-  <div id='answer_comment'>
-      <ul>
-        <% @answers.each do |answer| %>
-        <li><%= answer.content %></li>
-      </ul>
-    <% if @answers.length > 0 && logged_in? %>
-      <button id="answerId/<%=answer.id%>" class='new_comment_for_answer_button'>Comment</button>
+  <% if @all_comments %>
+  <div id='question_comment'>
+    <ul>
+      <% @all_comments.reverse.each do |comment| %>
+      <li><%= comment.content %></li>
+      <% end %>
+    </ul>
     <% end %>
+    <% if logged_in? %>
+      <button data-id="<%= @question.id %>" id="questionId/<%=@question.id%>" class='new_comment_button'>Comment</button>
+
+      <form action="/questions/<%= @question.id %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="Delete">
+      </form>
+    <% end %>
+
+    <%= erb :'_comments', locals:{question: @question, comment: @comment}, layout: false %>
   </div>
+</div>
+
+<!-- Load answers for this questions -->
+
+<div id='answer_container'>
+  <h6><%= @answers.count %> Answers</h6><br>
+    <ul>
+      <% @answers.each do |answer| %>
+      <li><%= answer.content %></li>
+    </ul>
+  <div id='answer_comment'>
+    <% if @answers.length > 0 && logged_in? %>
+    <button data-id="<%= answer.id %>" id="answerId/<%=answer.id%>" class='new_comment_for_answer_button'>Comment</button>
+    <% end %>
+
+    <%= erb :'_comments_answer', locals:{answer: answer, comment: @comment}, layout: false %>
+  </div>
+</div>
 
 
-  <!-- deleting answers -->
+<!-- deleting answers -->
 
-  <form action="/answers/<%= answer.id %>" method="post">
-    <input type="hidden" name="_method" value="delete">
-    <input type="submit" value="Delete">
-  </form>
-
-
-<%= erb :'_comments_answer', locals:{answer: answer, comment: @comment}, layout: false %>
+<form action="/answers/<%= answer.id %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete">
+</form>
 
 <% end %>
 
@@ -66,11 +61,11 @@
 <h3> Your Answer </h3><br>
 
 <% if @errors %>
-  <p><%= @errors %></p>
+<p><%= @errors %></p>
 <% end %>
 <form action="/questions/<%= @question.id %>/answers/new" method="POST">
-    <textarea rows="5" cols="30" name="answer[content]" placeholder="Content"></textarea>
-    <input type="submit" value="Submit Answer">
+  <textarea rows="5" cols="30" name="answer[content]" placeholder="Content"></textarea>
+  <input type="submit" value="Submit Answer">
 </form>
 
 
