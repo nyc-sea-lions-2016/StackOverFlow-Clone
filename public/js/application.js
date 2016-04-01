@@ -30,7 +30,38 @@ $(document).ready(function() {
     event.preventDefault();
     $('#new_comment_for_answer_form').show();
     $(this).hide();
+  })
+
+
+  // AJAXify voting
+  // $('.vote-button').on('click', function(event){
+  //   event.preventDefault();
+      // debugger;
+
+    // $.ajax({
+    //   url: $(event.target).attr('href'),
+    //   method: 'post'
+    // })
+
+
+  $('.vote-button').on('click', function(event){
+    event.preventDefault();
+    $.ajax({
+      url: $(event.target).attr('href'),
+      method: 'post',
+      dataType: $(event.target).serialize()
+    }).done(function(response){
+      console.log(response)
+      $('.points').html(response)
+    })
+  })
+
+
   });
+
+
+
+
 
 
   // $('#new_comment_for_answer_form').on('submit', function(event) {
@@ -44,4 +75,4 @@ $(document).ready(function() {
 
   // });
 
-});
+// });

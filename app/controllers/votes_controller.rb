@@ -1,8 +1,9 @@
-get '/votes/:id' do 
+post '/votes/:id' do 
   if logged_in?
     @question = Question.find(params[:id])
     @question.votes.create(value: 1)
-    redirect "questions/#{@question.id}"
+    @question.points.to_s
+    # redirect "questions/#{@question.id}"
   else
     #Error not going through
     @errors = 'You need to log in'
@@ -10,12 +11,18 @@ get '/votes/:id' do
   end
 end
 
-get '/votes/reduce/:id' do 
+post '/votes/reduce/:id' do 
   if logged_in?
-  @question = Question.find(params[:id])
-  @question.votes.create(value: - 1)
-  redirect "questions/#{@question.id}"
+    @question = Question.find(params[:id])
+    @question.votes.create(value: - 1)
+    @question.points.to_s
+    # redirect "questions/#{@question.id}"
   else
+    @errors = 'You need to log in'
     redirect '/'
   end
 end
+
+# get '/votes/:id' do
+
+# end
