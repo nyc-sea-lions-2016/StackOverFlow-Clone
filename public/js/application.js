@@ -30,7 +30,6 @@ $(document).ready(function() {
     $('#' + 'answer-' + formId).show();
   });
 
-
   $('.answer_comment').on('submit', '.new_comment_for_answer_form', function(event) {
     event.preventDefault();
     $.ajax({

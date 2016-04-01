@@ -6,4 +6,15 @@ class Question < ActiveRecord::Base
 
   validates :title, presence: true
   validates :content, presence: true
+
+  
+  def points
+    votes.sum(:value)
+  end
+
+  def time_since_creation
+    ((Time.now - created_at) / 3600).round
+  end
+
+
 end

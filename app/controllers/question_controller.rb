@@ -9,6 +9,9 @@ end
 
 get '/questions/:id' do
   @question = Question.find(params[:id])
+  if logged_in?
+  @user = User.find(session[:user_session_id])
+  end
   @answers = @question.answers
   @all_comments = @question.comments
 
