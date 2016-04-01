@@ -1,4 +1,5 @@
-img{
+/*Navigation bar CSS*/
+.top-bar img{
   color: #fff;
   -webkit-filter: invert(100%);
   padding-left: 20px;
@@ -32,6 +33,7 @@ button{
   color: #fff;
 }
 
+/*HomePage CSS*/
 .table-style{
   display: inline-block; 
   text-align: center; 
@@ -46,14 +48,14 @@ button{
   float: right;
   margin-right: 5%;
   margin-top: 25px;
-  color: #01416F;
+  color: #0077cc;
 
 }
 
 .question-title{
   font-size: 16px;
   font-weight: 400;
-  color: #01416F;
+  color: #0077cc;
   vertical-align: 10px;
   padding-left: 50px;
   font-weight: bold;
@@ -65,6 +67,8 @@ button{
   margin-bottom: -5px;
 }
 
+
+/*Footer CSS*/
 
 footer{
   padding: 100px 20px 90px 20px;
@@ -81,3 +85,39 @@ footer{
 }
 
 
+/*Login Page CSS*/
+input[type="text"],input[type="password"]{
+  width: 250px;
+}
+
+
+input[type="submit"]{
+  width: 100px;
+  border-radius: 5px;
+  margin-left: 50%;
+  background: #0077cc;
+}
+.login-form{
+  margin: 100px;
+  padding-left: 10%;
+  border: 1px solid #9ea3a9;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.block{
+  font-weight: bold;
+}
+
+.login-container p {
+  text-align: center;
+  font-size: 20px;
+  position: relative;
+  top: 60px;
+}
+
+.stack-exchange{
+  width:160px;
+  position: relative;
+  bottom: 10px;
+}
