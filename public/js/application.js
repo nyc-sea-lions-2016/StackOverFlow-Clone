@@ -1,37 +1,45 @@
 $(document).ready(function() {
-  $('#new_comment_button').on('click', function(event){
+
+  //Questions
+
+  $('#question_comment').on('click', '.new_comment_button', function(event){
     event.preventDefault();
-    $('#new_comment_form').show()
-    // $('#new_comment_button').addClass('hidden')
-    $(this).hide()
+    $(event.target).hide()
+    var formId = $(event.target).data().id
+    $('#' + 'question-' + formId).show();
   })
 
-  $('#new_answer_button').on('click', function(event){
+  $('#question_comment').on('submit','.new_comment_form', function(event){
     event.preventDefault();
-    $('#new_answer_form').show()
-    // $('#new_comment_button').addClass('hidden')
-    $(this).hide()
-  })
-
-  $('#new_comment_form').on('submit', function(event){
-    event.preventDefault();
-    var info = $(event.target)
       $.ajax({
         type: 'POST',
         url: '/comments',
-        data: info.serialize()
+        data: $(event.target).serialize()
       }).done(function(response){
-        $('#question_comment').append('<li>' + response + '</li>');
-        //Clear text field
+        $('#question_comment').prepend('<li>' + response + '</li>');
+        $(event.target)..hide().siblings('button').show();
       })
   })
 
-  $('#new_comment_for_answer_button').on('click', function(event) {
+  //ANSWERS
+
+  $('.answer_comment').on('click', '.new_comment_for_answer_button', function(event) { // Make into class
     event.preventDefault();
-    $('#new_comment_for_answer_form').show();
-    $(this).hide();
+    $(event.target).hide();
+    var formId = $(event.target).data().id
+    $('#' + 'answer-' + formId).show();
   });
 
+  $('.answer_comment').on('submit', '.new_comment_for_answer_form', function(event) {
+    event.preventDefault();
+    $.ajax({
+      type: 'POST',
+      url: '/answers/comments',
+      data: $(event.target).serialize()
+    }).done(function(response){
+    $('.answer_comment').prepend('<li>' + response + '</li>');
+    $(event.target).hide().siblings('button').show();
+  });
 
   $('body').on('submit','#user_answer',function(event){
     event.preventDefault();
@@ -46,6 +54,5 @@ $(document).ready(function() {
 
     })
   })
-
 
 });
