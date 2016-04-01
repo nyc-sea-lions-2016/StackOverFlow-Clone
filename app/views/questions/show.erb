@@ -22,6 +22,8 @@
       <% end %>
     </ul>
 
+  <%= erb :'_comments', locals:{question: @question, comment: @comment}, layout: false %>
+
     <% end %>
     <% if logged_in? %>
       <button data-id="<%= @question.id %>" id="questionId/<%=@question.id%>" class='new_comment_button'>Comment</button>
@@ -39,9 +41,9 @@
     <%= erb :'_new_answer', locals:{answer: answer}, layout: false %>
   </ul>
 
-    <%= erb :'_comments', locals:{question: @question, comment: @comment}, layout: false %>
   </div>
 </div>
+<% end %>
 
 <!-- Load answers for this questions -->
 

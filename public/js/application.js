@@ -17,7 +17,8 @@ $(document).ready(function() {
         data: $(event.target).serialize()
       }).done(function(response){
         $('#question_comment').prepend('<li>' + response + '</li>');
-        $(event.target)..hide().siblings('button').show();
+        $(event.target).hide().siblings('button').show();
+        debugger;
       })
   })
 
@@ -40,19 +41,18 @@ $(document).ready(function() {
     $('.answer_comment').prepend('<li>' + response + '</li>');
     $(event.target).hide().siblings('button').show();
   });
+});
 
-  $('body').on('submit','#user_answer',function(event){
+  $('#user_answer').on('submit', function(event){
     event.preventDefault();
-    var target = $(event.target);
     $.ajax({
       type: 'POST',
       url: target.attr('action'),
-      data: target.serialize()
+      data: $(event.target).serialize()
     }).done(function(response){
       $('#user_answer').trigger('reset')
       $('#answer').append(response)
 
     })
-  })
-
+  });
 });
