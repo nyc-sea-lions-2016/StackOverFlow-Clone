@@ -8,10 +8,7 @@
       <a href='/votes/reduce/<%= @question.id %>' class="fa fa-caret-down fa-2x vote-button"></a>
       </td>
       <td><%= @question.content %></td>
-      <td><a href="/questions/<%= @question.id %>"><%= @question.title %></a></td>
-      <% if logged_in? %>
-      <td>Asked by  <%= @user.username %></td>
-      <% end %>
+
     </tr>
 </tbody>
 
@@ -24,6 +21,7 @@
       <li><%= comment.content %></li>
       <% end %>
     </ul>
+
     <% end %>
     <% if logged_in? %>
       <button data-id="<%= @question.id %>" id="questionId/<%=@question.id%>" class='new_comment_button'>Comment</button>
@@ -33,6 +31,13 @@
         <input type="submit" value="Delete">
       </form>
     <% end %>
+  <h6><%= @answers.count %> Answers</h6><br>
+
+
+  <ul id="answer">
+    <% @answers.each do |answer| %>
+    <%= erb :'_new_answer', locals:{answer: answer}, layout: false %>
+  </ul>
 
     <%= erb :'_comments', locals:{question: @question, comment: @comment}, layout: false %>
   </div>
@@ -79,9 +84,9 @@
 <p><%= @errors %></p>
 <% end %>
 
-<form action="/questions/<%= @question.id %>/answers/new" method="POST">
-  <textarea rows="5" cols="30" name="answer[content]" placeholder="Content"></textarea>
-  <input type="submit" value="Submit Answer">
+<form id="user_answer" action="/questions/<%= @question.id %>/answers/new" method="POST">
+    <textarea rows="5" cols="30" name="answer[content]" placeholder="Content"></textarea>
+    <input type="submit" value="Submit Answer">
 </form>
 
 

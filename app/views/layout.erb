@@ -10,19 +10,49 @@
   
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
-  <!--
-    application.css is where you put your styles
-  -->
   <link rel="stylesheet" href="/css/app.css">
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  
   <script src="/js/application.js"></script>
 
   <title></title>
 </head>
 <body>
-<a href="/">Home</a>
+
+<div  class="top-bar">
+<a href="/"><img src="https://41.media.tumblr.com/cb8f30d105d25da072bd4b904cd96841/tumblr_o4xqrvxqxU1ubupxao1_1280.png" width="150px"></a>
+
+<ul class="top-bar-right menu">
+
+  <% if logged_in? %>
+  <li><a href="/logout">Logout</a></li>
+  <li><a href="/questions/new">Create Question</a></li>
+  <% else %>
+  <li><a href="/login">Login</a></li>
+  <li><a href="/users/new">Register</a></li>
+  <% end %>
+      <li><input type="search" placeholder="Search Q&A"></li>    
+</ul>
+
+</div>
+
 
   <%= yield %>
+
+<footer>
+  <nav >
+    <p>Contact us</p>
+    <ul>
+      <li class="footer-list"><a  href="#">Alex Forger</a></li>
+      <li class="footer-list"><a  href="#">Brian Bier</a></li>
+      <li class="footer-list"><a  href="#">Pietro smurf powder</a></li>
+    </ul>
+  </nav>
+  <p class="rights-reserved">
+    &copy; 2016 Stack overflow mock; user contributions licensed under bb by-ap 2.0 with attribution not required
+  </p>
+</footer>
+
 </body>
 </html>

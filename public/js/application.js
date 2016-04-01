@@ -41,6 +41,18 @@ $(document).ready(function() {
     $(event.target).hide().siblings('button').show();
   });
 
-});
+  $('body').on('submit','#user_answer',function(event){
+    event.preventDefault();
+    var target = $(event.target);
+    $.ajax({
+      type: 'POST',
+      url: target.attr('action'),
+      data: target.serialize()
+    }).done(function(response){
+      $('#user_answer').trigger('reset')
+      $('#answer').append(response)
+
+    })
+  })
 
 });
