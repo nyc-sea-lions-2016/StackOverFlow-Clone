@@ -1,33 +1,24 @@
-<ul class="vertical medium-horizontal menu">
-
-  <% if logged_in? %>
-  <li><a href="/logout">Logout</a></li>
-  <li><a href="/questions/new">Create Question</a></li>
-  <% else %>
-  <li><a href="/login">Login</a></li>
-  <li><a href="/users/new">Register</a></li>
-  <% end %>
-</ul>
-
-<table>
-  <thead>
-    <tr>
-      <th width="200">Top Questions</th>
-    </tr>
-  </thead>
-
-  <% @questions.each do |question| %>
-
+<h5 class="question-heading">Top Questions</h5>
+<% @questions.reverse.each do |question| %>
   <tbody>
-    <tr>
-      <td><p><%= question.points %> </p>votes</td>
-      <td> <p><%= question.answers.count %></p>Answers</td>
-<!--       <td>Views</td> -->
-      <td><a href="/questions/<%= question.id %>"><%= question.title %></a></td>
-      <% if logged_in? %>
-      <td>Asked by  <%= @user.username %></td>
-      <% end %>
-   
+    <tr class='table-size'>
+      <td>
+        <ul>
+          <li class="table-style counter"> <%= question.points %> <br>votes
+          </li>
+          <li class="table-style counter"> <%= question.answers.count %> <br>answers
+          </li> 
+          <li  class="table-style question-title">
+            <a href="/questions/<%= question.id %>"><%= question.title.slice(0..90) %></a>
+          </li>
+          <% if logged_in? %>
+            <% time = question.user.created_at %>
+          <li class="table-style user-name">
+            <a href="#">Asked <%= time.strftime("%b %w %Y") %>  <%= question.user.username %> </a>
+          </li>
+          <% end %>
+        </ul>
+      </td>
     </tr>
   </tbody>
 
