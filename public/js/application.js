@@ -17,7 +17,7 @@ $(document).ready(function() {
         data: $(event.target).serialize()
       }).done(function(response){
         $('#question_comment').prepend('<li>' + response + '</li>');
-        $(event.target).siblings().show();
+        $(event.target).hide().siblings().show();
       })
   })
 
@@ -39,11 +39,9 @@ $(document).ready(function() {
       url: '/answers/comments',
       data: $(event.target).serialize()
     }).done(function(response){
-         debugger;
-
-    $(event.target).parent().append(response);
-    $(event.target).hide()
-
+    $(event.target).siblings('ul').append('<li>' + response + '</li>');
+    $(event.target).hide();
+    $(event.target).siblings('button').show();
   });
 });
 
