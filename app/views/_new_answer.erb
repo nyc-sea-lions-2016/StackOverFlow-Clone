@@ -1,6 +1,2 @@
 <li><%= answer.content %></li>
-<button class='new_comment_for_answer_button'>Comment</button>
-<form action="/answers/<%= answer.id %>" method="post">
-    <input type="hidden" name="_method" value="delete">
-    <input type="submit" value="Delete">
-</form>
+<button data-id="<%= answer.id %>" class='new_comment_for_answer_button'>Comment</button>
