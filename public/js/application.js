@@ -34,13 +34,16 @@ $(document).ready(function() {
 
   $('.answer_container').on('submit', '.new_comment_for_answer_form', function(event) {
     event.preventDefault();
-    debugger;
     $.ajax({
       type: 'POST',
       url: '/answers/comments',
       data: $(event.target).serialize()
     }).done(function(response){
-    $(event.target).siblings().show();
+         debugger;
+
+    $(event.target).parent().append(response);
+    $(event.target).hide()
+
   });
 });
 
@@ -55,7 +58,6 @@ $(document).ready(function() {
       data: $(event.target).serialize()
     }).done(function(response){
       $('#user_answer').trigger('reset');
-      // $('.answer_container').append(response);
       $('.answer_list').append(response);
     })
   });

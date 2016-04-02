@@ -1,5 +1,9 @@
 <div class='answer_comment_container'>
-  <li><%= answer.content %></li><button data-id="<%= answer.id %>" class='new_comment_for_answer_button'>Comment</button>
+  <li><%= answer.content %></li>
+  <ul>
+    <li><%= answer.comments %></li>
+  </ul>
+  <button data-id="<%= answer.id %>" class='new_comment_for_answer_button'>Comment</button>
    <form id="answer-<%=answer.id%>" class="new_comment_for_answer_form hidden" action="/answers/comments" method="POST">
       <input type ='hidden' name='answer[answer_id]' value="<%=answer.id%>">
       <input type="hidden" name="comment[user_id]" value="<%=session[:user_session_id]%>">
