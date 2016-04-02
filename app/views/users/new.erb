@@ -1,5 +1,5 @@
-<h1>Register for a New Account</h1>
-
+<div class= 'login-container'>
+<p>Stack Overflow is part of the <img class="stack-exchange" src="https://40.media.tumblr.com/61332bc6b89483d7e253f00038e33ba2/tumblr_o4z60oFqAR1ubupxao1_400.png">network of 153 Q&A communities.</p>
 <% if @errors %>
   <span>Please fix the following errors:</span>
   <ul class="error-list pad-b-2">
@@ -8,8 +8,8 @@
     <% end %>
   </ul>
 <% end %>
-<div class="container">
-<form method="post" action="/users">
+<div class="container register-container">
+<form class='login-create-form'  method="post" action="/users">
   <label for="title-input" class="block mar-b-1">Username:</label>
   <input id="title-input" name="user[username]" type="text" tabindex="1" class="block w-100 no-outline no-border pad-1 mar-b-2">
 
@@ -21,4 +21,5 @@
 
   <input type="submit" value="Create Account" tabindex="3" class="block button w-100 mar-t-4 mar-b-3 pad-2 round-1 text-c center no-border no-outline">
 </form>
+</div>
 </div>
