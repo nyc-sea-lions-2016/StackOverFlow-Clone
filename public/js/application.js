@@ -16,8 +16,9 @@ $(document).ready(function() {
         url: '/comments',
         data: $(event.target).serialize()
       }).done(function(response){
-        $('#question_comment').prepend('<li>' + response + '</li>');
+        $('.comment-list').append('<li>' + response + '</li>');
         $(event.target).hide().siblings().show();
+        $('#new_answer_form').hide();
       })
   })
 
@@ -70,7 +71,8 @@ $(document).ready(function() {
        dataType: $(event.target).serialize()
      }).done(function(response){
        console.log(response)
-       $('.points').html(response)
+       $('.question-points').html(response)
+
      })
    })
 

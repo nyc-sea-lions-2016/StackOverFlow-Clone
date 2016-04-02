@@ -1,63 +1,61 @@
-<tbody>
-    <tr>
-      <th><h1><%= @question.title %></h1></th>
-    </tr>
-    <tr>
-      <td><a href='/votes/<%= @question.id %>' class="fa fa-sort-desc fa-2x vote-button"></a><br>
-      <span class='points' ><%= @question.points %></span><br>
-      <a href='/votes/reduce/<%= @question.id %>' class="fa fa-caret-down fa-2x vote-button"></a>
-      </td>
-      <td><%= @question.content %></td>
+<header class='question-header'>
+  <h3><%= @question.title %></h3>
+  <hr>
 
-    </tr>
-</tbody>
+  <ul class='points-controller'>
+  <li><a href='/votes/<%= @question.id %>' class="fa fa-sort-desc fa-2x vote-button"></a></li>
+  <li><span class = "question-points"><%= @question.points %></span><br></li>
+  <li><a href='/votes/reduce/<%= @question.id %>' class="fa fa-caret-down fa-2x vote-button"></a></li>
+  </ul>
+  <p class='points'><%= @question.content %></p>
 
-  <% if @all_comments %>
+  <div class='main'>
+    <% if @all_comments %>
   <div id='question_comment'>
-    <ul>
+    <ul class="comment-list">
       <% @all_comments.reverse.each do |comment| %>
       <li><%= comment.content %></li>
       <% end %>
     </ul>
 
-  <%= erb :'_comments', locals:{question: @question, comment: @comment}, layout: false %>
+    <%= erb :'_comments', locals:{question: @question, comment: @comment}, layout: false %>
 
     <% end %>
     <% if logged_in? %>
-      <button data-id="<%= @question.id %>" id="questionId/<%=@question.id%>" class='new_comment_button'>Comment</button>
+    <button data-id="<%= @question.id %>" id="questionId/<%=@question.id%>" class='new_comment_button'>Comment</button>
 
-      <form action="/questions/<%= @question.id %>" method="post">
-        <input type="hidden" name="_method" value="delete">
-        <input type="submit" value="Delete">
-      </form>
+    <form action="/questions/<%= @question.id %>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="Delete">
+    </form>
     <% end %>
 
-<!-- Load answers for this questions -->
+    <!-- Load answers for this questions -->
 
-<div class='answer_container'>
-  <h6><%= @answers.count %> Answers</h6><br>
-    <ul class='answer_list'>
-      <% @answers.each do |answer| %>
-      <%= erb :'_new_answer', locals:{answer: answer, comment: @comment}, layout: false %>
+    <div class='answer_container'>
+      <h6><%= @answers.count %> Answers</h6><br>
+      <ul class='answer_list'>
+        <% @answers.each do |answer| %>
+        <%= erb :'_new_answer', locals:{answer: answer, comment: @comment}, layout: false %>
 
-<% end %>
-    </ul>
-</div>
+        <% end %>
+      </ul>
+    </div>
 
-<!-- Making New Comments for Answers -->
+    <!-- Making New Comments for Answers -->
 
-<form id="new_answer_form" class="hidden" action="/comments" method="POST">
-  <input type ='hidden' name='question[question_id]' value="<%=@question.id%>">
-  <input type="hidden" name="comment[user_id]" value="<%=session[:user_session_id]%>">
-  <textarea rows="5" cols="30" name="comment[content]" placeholder="Comment"></textarea>
-  <input type="submit" value="Comment" />
-</form>
+    <form id="new_answer_form" class="hidden" action="/comments" method="POST">
+      <input type ='hidden' name='question[question_id]' value="<%=@question.id%>">
+      <input type="hidden" name="comment[user_id]" value="<%=session[:user_session_id]%>">
+      <textarea rows="5" cols="30" name="comment[content]" placeholder="Comment"></textarea>
+      <input type="submit" value="Comment" />
+    </form>
 
-</div>
+  </div>
 
-<!-- Making New Answers -->
+  <!-- Making New Answers -->
 
-<div class='new_answer_container'
+  <div class='new_answer_container'
 
   <h3> Your Answer </h3><br>
 
@@ -66,12 +64,12 @@
   <% end %>
 
   <form id="user_answer" action="/questions/<%= @question.id %>/answers/new" method="POST">
-      <textarea rows="5" cols="30" name="answer[content]" placeholder="Content"></textarea>
-      <input type="submit" value="Submit Answer">
+    <textarea rows="5" cols="30" name="answer[content]" placeholder="Content"></textarea>
+    <input type="submit" value="Submit Answer">
   </form>
-
 </div>
-
+</div>
+</header>
 
 
 

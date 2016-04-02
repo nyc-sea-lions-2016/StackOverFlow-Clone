@@ -141,13 +141,46 @@ input[type="text"],input[type="password"]{
 
 
 /*Question Page*/
-
-.question-title{
+.question-header{
+  margin: 10%;
+}
+.question-header h3{
   font-size: 20px;
   color: #000;
   padding-top: 40px;
+  font-weight: bolder;
 }
 
 .posted-question{
   border-top: 1px solid #000;
+}
+.points{
+  float: left;
+  padding-left: 40px;
+  padding-top: 30px;
+  padding-bottom: -20px;
+  font-weight: bold;
+}
+
+
+.points-controller{
+  float: left;
+  list-style-type:none
+}
+
+.main{
+  clear: both;
+}
+
+.question-points{
+  padding-left: 4.778px;
+  
+}
+
+.comment-list{
+  list-style-type:none;
+  padding-left: 70px;
+  color: #a6a7a8;
+  position: relative;
+  top:-30px;
 }
