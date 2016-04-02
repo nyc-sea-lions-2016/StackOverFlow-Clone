@@ -18,11 +18,10 @@ $(document).ready(function() {
       }).done(function(response){
         $('#question_comment').prepend('<li>' + response + '</li>');
         $(event.target).hide().siblings('button').show();
-        debugger;
       })
   })
 
-  //ANSWERS
+  //COMMENTS FOR ANSWERS
 
   $('.answer_comment').on('click', '.new_comment_for_answer_button', function(event) { // Make into class
     event.preventDefault();
@@ -43,16 +42,20 @@ $(document).ready(function() {
   });
 });
 
-  $('#user_answer').on('submit', function(event){
+//CREATING ANSWERS
+
+  $('body').on('submit', '#user_answer', function(event){
     event.preventDefault();
+    var questionId = $(event.target).attr('action').split('/')[2];
     $.ajax({
       type: 'POST',
-      url: target.attr('action'),
+      url: '/questions/' + questionId + '/answers/new',
       data: $(event.target).serialize()
     }).done(function(response){
-      $('#user_answer').trigger('reset')
-      $('#answer').append(response)
-
+      $('#user_answer').trigger('reset');
+      $('#answer_container').append(response);
     })
   });
+
+
 });
