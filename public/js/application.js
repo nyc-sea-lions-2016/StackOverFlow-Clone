@@ -40,7 +40,6 @@ $(document).ready(function() {
       url: '/answers/comments',
       data: $(event.target).serialize()
     }).done(function(response){
-    $('.answer_comment').last().append(response);
     $(event.target).siblings().show();
   });
 });
@@ -56,8 +55,8 @@ $(document).ready(function() {
       data: $(event.target).serialize()
     }).done(function(response){
       $('#user_answer').trigger('reset');
-      $('.answer_container').append(response);
-      // debugger;
+      // $('.answer_container').append(response);
+      $('.answer_list').append(response);
     })
   });
 
