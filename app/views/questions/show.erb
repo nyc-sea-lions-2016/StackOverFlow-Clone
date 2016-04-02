@@ -12,76 +12,67 @@
     </tr>
 </tbody>
 
-
-
-<% if @all_comments %>
-<div id='question_comment'>
-  <ul>
-    <% @all_comments.reverse.each do |comment| %>
-    <li><%= comment.content %></li>
-    <% end %>
-  </ul>
-</div>
-<% end %>
-<% if logged_in? %>
-  <button id='new_comment_button'>Comment</button>
-
-<!-- delete question if logged in -->
-  <form action="/questions/<%= @question.id %>" method="post">
-    <input type="hidden" name="_method" value="delete">
-    <input type="submit" value="Delete">
-  </form>
-
-
-<% end %>
-
-
-<!-- Need to use the ajax partial -->
+  <% if @all_comments %>
+  <div id='question_comment'>
+    <ul>
+      <% @all_comments.reverse.each do |comment| %>
+      <li><%= comment.content %></li>
+      <% end %>
+    </ul>
 
   <%= erb :'_comments', locals:{question: @question, comment: @comment}, layout: false %>
 
- <!-- Load answers for this questions -->
+    <% end %>
+    <% if logged_in? %>
+      <button data-id="<%= @question.id %>" id="questionId/<%=@question.id%>" class='new_comment_button'>Comment</button>
 
-<div id='answer_comment'>
+      <form action="/questions/<%= @question.id %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="Delete">
+      </form>
+    <% end %>
 
+<!-- Load answers for this questions -->
+
+<div class='answer_container'>
   <h6><%= @answers.count %> Answers</h6><br>
-
-
-  <ul id="answer">
-    <% @answers.each do |answer| %>
-    <%= erb :'_new_answer', locals:{answer: answer}, layout: false %>
-  </ul>
-
-
-  <form id="new_comment_for_answer_form" class="hidden" action="/answers/comments" method="POST">
-    <input type ='hidden' name='answer[answer_id]' value="<%=answer.id%>">
-    <input type="hidden" name="comment[user_id]" value="<%=session[:user_session_id]%>">
-      <textarea rows="5" cols="30" name="comment[content]" placeholder="Comment"></textarea>
-    <input type="submit" value="Comment">
-  </form>
+    <ul class='answer_list'>
+      <% @answers.each do |answer| %>
+      <%= erb :'_new_answer', locals:{answer: answer, comment: @comment}, layout: false %>
 
 <% end %>
+    </ul>
+</div>
+
+<!-- Making New Comments for Answers -->
 
 <form id="new_answer_form" class="hidden" action="/comments" method="POST">
   <input type ='hidden' name='question[question_id]' value="<%=@question.id%>">
   <input type="hidden" name="comment[user_id]" value="<%=session[:user_session_id]%>">
   <textarea rows="5" cols="30" name="comment[content]" placeholder="Comment"></textarea>
-  <input type="submit" value="Comment" /> 
+  <input type="submit" value="Comment" />
 </form>
 
 </div>
 
+<!-- Making New Answers -->
 
-<h3> Your Answer </h3><br>
+<div class='new_answer_container'
 
-<% if @errors %>
-<p><%= @errors %></p>
-<% end %>
+  <h3> Your Answer </h3><br>
 
-<form id="user_answer" action="/questions/<%= @question.id %>/answers/new" method="POST">
-    <textarea rows="5" cols="30" name="answer[content]" placeholder="Content"></textarea>
-    <input type="submit" value="Submit Answer">
-</form>
+  <% if @errors %>
+  <p><%= @errors %></p>
+  <% end %>
+
+  <form id="user_answer" action="/questions/<%= @question.id %>/answers/new" method="POST">
+      <textarea rows="5" cols="30" name="answer[content]" placeholder="Content"></textarea>
+      <input type="submit" value="Submit Answer">
+  </form>
+
+</div>
+
+
 
 
 
