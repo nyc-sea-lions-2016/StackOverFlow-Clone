@@ -148,6 +148,7 @@ input[type="text"],input[type="password"]{
   font-size: 20px;
   color: #000;
   padding-top: 40px;
+  font-weight: bolder;
 }
 
 .posted-question{
@@ -158,6 +159,7 @@ input[type="text"],input[type="password"]{
   padding-left: 40px;
   padding-top: 30px;
   padding-bottom: -20px;
+  font-weight: bold;
 }
 
 
@@ -173,7 +175,6 @@ input[type="text"],input[type="password"]{
 .question-points{
   padding-left: 4.778px;
   
-
 }
 
 .comment-list{
