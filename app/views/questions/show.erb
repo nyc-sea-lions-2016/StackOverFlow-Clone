@@ -22,9 +22,9 @@
 
     <% end %>
     <% if logged_in? %>
-    <button data-id="<%= @question.id %>" id="questionId/<%=@question.id%>" class='new_comment_button'>Comment</button>
+    <button data-id="<%= @question.id %>" id="questionId/<%=@question.id%>" class='new_comment_button button'>Comment</button>
 
-    <form action="/questions/<%= @question.id %>" method="post">
+    <form class='button-for-form'action="/questions/<%= @question.id %>" method="post">
       <input type="hidden" name="_method" value="delete">
       <input type="submit" value="Delete">
     </form>
@@ -44,7 +44,7 @@
 
     <!-- Making New Comments for Answers -->
 
-    <form id="new_answer_form" class="hidden" action="/comments" method="POST">
+    <form  id="new_answer_form" class="hidden" action="/comments" method="POST">
       <input type ='hidden' name='question[question_id]' value="<%=@question.id%>">
       <input type="hidden" name="comment[user_id]" value="<%=session[:user_session_id]%>">
       <textarea rows="5" cols="30" name="comment[content]" placeholder="Comment"></textarea>
@@ -63,7 +63,7 @@
   <p><%= @errors %></p>
   <% end %>
 
-  <form id="user_answer" action="/questions/<%= @question.id %>/answers/new" method="POST">
+  <form class="button-for-form" id="user_answer" action="/questions/<%= @question.id %>/answers/new" method="POST">
     <textarea rows="5" cols="30" name="answer[content]" placeholder="Content"></textarea>
     <input type="submit" value="Submit Answer">
   </form>

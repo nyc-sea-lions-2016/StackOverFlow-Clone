@@ -7,6 +7,7 @@ $(document).ready(function() {
     $(event.target).hide()
     var formId = $(event.target).data().id
     $('#' + 'question-' + formId).show();
+    $('.new_comment_form').trigger('reset');
   })
 
   $('#question_comment').on('submit','.new_comment_form', function(event){
