@@ -8,6 +8,7 @@
     <% end %>
   </ul>
   <button data-id="<%= answer.id %>" class='new_comment_for_answer_button'>Comment</button>
+
    <form id="answer-<%=answer.id%>" class="new_comment_for_answer_form hidden" action="/answers/comments" method="POST">
       <input type ='hidden' name='answer[answer_id]' value="<%=answer.id%>">
       <input type="hidden" name="comment[user_id]" value="<%=session[:user_session_id]%>">
@@ -16,7 +17,7 @@
     </form>
 
 <!-- DELETE BUTTON -->
-<form action="/answers/<%= answer.id %>" method="post">
+<form class='button-for-form' action="/answers/<%= answer.id %>" method="post">
   <input type="hidden" name="_method" value="delete">
   <input type="submit" value="Delete">
 </form>
