@@ -28,6 +28,7 @@ $(document).ready(function() {
     $(event.target).hide();
     var formId = $(event.target).data().id
     $('#' + 'answer-' + formId).show();
+    debugger;
   });
 
   $('.answer_comment').on('submit', '.new_comment_for_answer_form', function(event) {
@@ -44,7 +45,7 @@ $(document).ready(function() {
 
 //CREATING ANSWERS
 
-  $('body').on('submit', '#user_answer', function(event){
+  $('#user_answer').on('submit', function(event){
     event.preventDefault();
     var questionId = $(event.target).attr('action').split('/')[2];
     $.ajax({
@@ -53,9 +54,24 @@ $(document).ready(function() {
       data: $(event.target).serialize()
     }).done(function(response){
       $('#user_answer').trigger('reset');
-      $('#answer_container').append(response);
+      $('.answer_container').append(response);
+      debugger;
     })
   });
+
+//VOTES AJAX
+
+ $('.vote-button').on('click', function(event){
+     event.preventDefault();
+     $.ajax({
+       url: $(event.target).attr('href'),
+       method: 'post',
+       dataType: $(event.target).serialize()
+     }).done(function(response){
+       console.log(response)
+       $('.points').html(response)
+     })
+   })
 
 
 });

@@ -70,17 +70,20 @@
 
 <!-- Making New Answers -->
 
+<div class='new_answer_container'
 
-<h3> Your Answer </h3><br>
+  <h3> Your Answer </h3><br>
 
-<% if @errors %>
-<p><%= @errors %></p>
-<% end %>
+  <% if @errors %>
+  <p><%= @errors %></p>
+  <% end %>
 
-<form id="user_answer" action="/questions/<%= @question.id %>/answers/new" method="POST">
-    <textarea rows="5" cols="30" name="answer[content]" placeholder="Content"></textarea>
-    <input type="submit" value="Submit Answer">
-</form>
+  <form id="user_answer" action="/questions/<%= @question.id %>/answers/new" method="POST">
+      <textarea rows="5" cols="30" name="answer[content]" placeholder="Content"></textarea>
+      <input type="submit" value="Submit Answer">
+  </form>
+
+</div>
 
 
 
