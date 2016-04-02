@@ -10,20 +10,16 @@ end
 get '/questions/:id' do
   @question = Question.find(params[:id])
   if logged_in?
-  @user = User.find(session[:user_session_id])
+    @user = User.find(session[:user_session_id])
   end
   @answers = @question.answers
   @all_comments = @question.comments
-
-  # @all_answer_comments = @answers.comments
   erb :'questions/show'
 end
 
 post '/questions' do
   @question = Question.new(params[:question])
   if @question.save
-  # binding.pry
-
     redirect "/questions/#{@question.id}"
   else
     @errors = @question.errors.full_messages
@@ -53,22 +49,17 @@ delete '/questions/:id' do
   @question = Question.find(params[:id])
   if @question.user_id == session[:user_session_id]
     @question.destroy
-    redirect "/questions/#{@question.id}"
-  else
-    # raise error
+    redirect "/"
   end
 end
 
 
 delete '/answers/:id' do
-  # binding.pry
   answer = Answer.find(params[:id])
   question = answer.question
   if answer.user_id == session[:user_session_id]
     answer.destroy
     redirect "/questions/#{question.id}"
-  else
-    # raise error
   end
 end
 
