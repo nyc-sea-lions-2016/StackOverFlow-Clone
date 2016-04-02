@@ -1,7 +1,11 @@
 <div class='answer_comment_container'>
   <li><%= answer.content %></li>
-  <ul>
-    <li><%= answer.comments %></li>
+  <ul class='list_for_answer_comments'>
+    <% answer.comments.each do |comment| %>
+    <li>
+      <%= comment.content %>
+    </li>
+    <% end %>
   </ul>
   <button data-id="<%= answer.id %>" class='new_comment_for_answer_button'>Comment</button>
    <form id="answer-<%=answer.id%>" class="new_comment_for_answer_form hidden" action="/answers/comments" method="POST">
