@@ -17,29 +17,33 @@ $(document).ready(function() {
         data: $(event.target).serialize()
       }).done(function(response){
         $('#question_comment').prepend('<li>' + response + '</li>');
-        $(event.target).hide().siblings('button').show();
+        $(event.target).siblings().show();
       })
   })
 
   //COMMENTS FOR ANSWERS
 
-  $('.answer_comment').on('click', '.new_comment_for_answer_button', function(event) { // Make into class
+  $('.answer_container').on('click', '.new_comment_for_answer_button', function(event) { // Make into class
     event.preventDefault();
     $(event.target).hide();
     var formId = $(event.target).data().id
     $('#' + 'answer-' + formId).show();
-    debugger;
+    // debugger;
   });
 
-  $('.answer_comment').on('submit', '.new_comment_for_answer_form', function(event) {
+
+  $('.answer_container').on('submit', '.new_comment_for_answer_form', function(event) {
     event.preventDefault();
     $.ajax({
       type: 'POST',
       url: '/answers/comments',
       data: $(event.target).serialize()
     }).done(function(response){
-    $('.answer_comment').prepend('<li>' + response + '</li>');
-    $(event.target).hide().siblings('button').show();
+         debugger;
+
+    $(event.target).parent().append(response);
+    $(event.target).hide()
+
   });
 });
 
@@ -54,8 +58,7 @@ $(document).ready(function() {
       data: $(event.target).serialize()
     }).done(function(response){
       $('#user_answer').trigger('reset');
-      $('.answer_container').append(response);
-      debugger;
+      $('.answer_list').append(response);
     })
   });
 

@@ -36,26 +36,13 @@
 
 <div class='answer_container'>
   <h6><%= @answers.count %> Answers</h6><br>
-    <ul>
+    <ul class='answer_list'>
       <% @answers.each do |answer| %>
-      <li><%= answer.content %></li>
-    </ul>
-  <div class='answer_comment'>
-    <% if @answers.length > 0 && logged_in? %>
-    <button data-id="<%= answer.id %>" class='new_comment_for_answer_button'>Comment</button>
-    <% end %>
-    <%= erb :'_comments_answer', locals:{answer: answer, comment: @comment}, layout: false %>
-  </div>
-</div>
-
-<!-- Deleting Answers -->
-
-<form action="/answers/<%= answer.id %>" method="post">
-  <input type="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete">
-</form>
+      <%= erb :'_new_answer', locals:{answer: answer, comment: @comment}, layout: false %>
 
 <% end %>
+    </ul>
+</div>
 
 <!-- Making New Comments for Answers -->
 
