@@ -3,71 +3,72 @@
   <hr>
 
   <ul class='points-controller'>
-  <li><a href='/votes/<%= @question.id %>' class="fa fa-sort-desc fa-2x vote-button"></a></li>
-  <li><span class = "question-points"><%= @question.points %></span><br></li>
-  <li><a href='/votes/reduce/<%= @question.id %>' class="fa fa-caret-down fa-2x vote-button"></a></li>
+    <li><a href='/votes/<%= @question.id %>' class="fa fa-sort-desc fa-3x vote-button"></a></li>
+    <li><span class = "question-points"><%= @question.points %></span><br></li>
+    <li><a href='/votes/reduce/<%= @question.id %>' class="fa fa-caret-down fa-3x vote-button"></a></li>
   </ul>
-  <p class='points'><%= @question.content %></p>
+  <p class='question-info'><%= @question.content %></p>
 
   <div class='main'>
-    <% if @all_comments %>
-  <div id='question_comment'>
-    <ul class="comment-list">
-      <% @all_comments.reverse.each do |comment| %>
-      <li><%= comment.content %></li>
-      <% end %>
-    </ul>
-
-    <%= erb :'_comments', locals:{question: @question, comment: @comment}, layout: false %>
-
-    <% end %>
-    <% if logged_in? %>
-    <button data-id="<%= @question.id %>" id="questionId/<%=@question.id%>" class='new_comment_button button'>Comment</button>
-
-    <form class='button-for-form'action="/questions/<%= @question.id %>" method="post">
-      <input type="hidden" name="_method" value="delete">
-      <input type="submit" value="Delete">
-    </form>
-    <% end %>
-
-    <!-- Load answers for this questions -->
-
-    <div class='answer_container'>
-      <h6><%= @answers.count %> Answers</h6><br>
-      <ul class='answer_list'>
-        <% @answers.each do |answer| %>
-        <%= erb :'_new_answer', locals:{answer: answer, comment: @comment}, layout: false %>
-
+      <% if @all_comments %>
+    <div id='question_comment'>
+      <ul class="comment-list">
+        <% @all_comments.reverse.each do |comment| %>
+        <li><%= comment.content %></li>
         <% end %>
       </ul>
+
+        <%= erb :'_comments', locals:{question: @question, comment: @comment}, layout: false %>
+
+      <% end %>
+
+      <button data-id="<%= @question.id %>" id="questionId/<%=@question.id%>" class='new_comment_button'>Add a Comment</button>
+      <% if logged_in? && @question.user_id == session[:user_session_id] %>
+
+      <form class='button-for-form'action="/questions/<%= @question.id %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="Delete Question">
+      </form>
+      <% end %>
+
+      <!-- Load answers for this questions -->
+
+      <div class='answer_container'>
+        <h6><%= @answers.count %> Answers</h6><br>
+        <hr>
+        <ul class='answer_list'>
+          <% @answers.each do |answer| %>
+          <%= erb :'_new_answer', locals:{answer: answer, comment: @comment}, layout: false %>
+          <% end %>
+        </ul>
+      </div>
+
+      <!-- Making New Comments for Answers -->
+
+      <form  id="new_answer_form" class="hidden" action="/comments" method="POST">
+        <input type ='hidden' name='question[question_id]' value="<%=@question.id%>">
+        <input type="hidden" name="comment[user_id]" value="<%=session[:user_session_id]%>">
+        <textarea rows="8" cols="20" name="comment[content]" placeholder="Comment"></textarea>
+        <input type="submit" value="Comment" />
+      </form>
+
     </div>
 
-    <!-- Making New Comments for Answers -->
+    <!-- Making New Answers -->
 
-    <form  id="new_answer_form" class="hidden" action="/comments" method="POST">
-      <input type ='hidden' name='question[question_id]' value="<%=@question.id%>">
-      <input type="hidden" name="comment[user_id]" value="<%=session[:user_session_id]%>">
-      <textarea rows="5" cols="30" name="comment[content]" placeholder="Comment"></textarea>
-      <input type="submit" value="Comment" />
+    <div class='new_answer_container'>
+
+    <h3> Your Answer </h3><br>
+
+    <% if @errors %>
+    <p><%= @errors %></p>
+    <% end %>
+
+    <form id="user_answer" action="/questions/<%= @question.id %>/answers/new" method="POST">
+      <textarea rows="5" cols="20" name="answer[content]" placeholder="Content"></textarea>
+      <input type="submit" value="Submit Answer">
     </form>
-
   </div>
-
-  <!-- Making New Answers -->
-
-  <div class='new_answer_container'
-
-  <h3> Your Answer </h3><br>
-
-  <% if @errors %>
-  <p><%= @errors %></p>
-  <% end %>
-
-  <form class="button-for-form" id="user_answer" action="/questions/<%= @question.id %>/answers/new" method="POST">
-    <textarea rows="5" cols="30" name="answer[content]" placeholder="Content"></textarea>
-    <input type="submit" value="Submit Answer">
-  </form>
-</div>
 </div>
 </header>
 

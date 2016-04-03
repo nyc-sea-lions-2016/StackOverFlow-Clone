@@ -1,3 +1,4 @@
+
 <h5 class="question-heading">Top Questions</h5>
 <% @questions.reverse.each do |question| %>
   <tbody>
@@ -9,7 +10,7 @@
           <li class="table-style counter"> <%= question.answers.count %> <br>answers
           </li>
           <li  class="table-style question-title">
-            <a href="/questions/<%= question.id %>"><%= question.title.slice(0..90) %></a>
+            <a id="view-count" href="/questions/<%= question.id %>"><%= question.title.slice(0..90) %></a>
           </li>
           <% if logged_in? %>
             <% time = question.user.created_at %>
