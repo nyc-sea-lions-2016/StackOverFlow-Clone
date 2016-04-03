@@ -75,7 +75,7 @@ $(document).ready(function() {
        console.log(response)
        $('.question-points').html(response)
 
-     })
-   })
+     });
+   });
 
 });

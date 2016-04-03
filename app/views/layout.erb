@@ -13,8 +13,27 @@
   <link rel="stylesheet" href="/css/app.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  
   <script src="/js/application.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.3.0/annyang.min.js"></script>
+  <script>
+  <% if logged_in? %>
+  if (annyang) {
+    // Let's define our first command. First the text we expect, and then the function it should call
+    var commands = {
+      'new question please': function() {
+        window.location.href='/questions/new'
+        // $('#speech-recognition').css('color','green');
+      }
+    };
+
+    // Add our commands to annyang
+    annyang.addCommands(commands);
+
+    // Start listening. You can call this here, or attach this call to an event, button, etc.
+    annyang.start();
+  }
+  <% end %>
+  </script>
 
   <title>Stack Overflow</title>
 </head>
@@ -43,7 +62,7 @@
     <li><a href="#">Users</a></li>
     <li><a href="#">Jobs</a></li>
     <% if logged_in? %>
-    <li><a href="/questions/new">Ask Questions</a></li>
+    <li><a id="speech-recognition" href="/questions/new">Ask Questions</a></li>
     <% end %>
   </ul>
 </div>
@@ -64,6 +83,5 @@
     &copy; 2016 Stack overflow mock; user contributions licensed under bb by-ap 2.0 with attribution not required
   </p>
 </footer>
-
 </body>
 </html>
