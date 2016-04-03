@@ -43,6 +43,7 @@ $(document).ready(function() {
     }).done(function(response){
     $(event.target).siblings('ul').append('<li>' + response + '</li>');
     $(event.target).hide();
+    $('.new_comment_for_answer_form').trigger('reset');
     $(event.target).siblings('button').show();
   });
 });
@@ -76,6 +77,5 @@ $(document).ready(function() {
 
      })
    })
-
 
 });

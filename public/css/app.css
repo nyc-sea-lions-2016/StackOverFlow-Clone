@@ -5,6 +5,28 @@
   padding-left: 20px;
 }
 
+.top-right-menu-options ul{
+  margin-right: 10%;
+  margin-top: 30px;
+  float: right;
+}
+
+
+.top-right-menu-options li{
+  display: inline-block;
+}
+.top-right-menu-options a{
+  font-size: 14px;
+  background-color: #9ea3a9;
+  color: #fff;
+  padding: 4px 10px 5px;
+}
+
+.top-right-menu-options a:hover{
+  background-color: #f69c55;
+  transition: background .15s ease;
+}
+
 .hidden {
   display: none;
 }
@@ -59,8 +81,32 @@
 
 .question-heading{
   margin-left: 49px;
-  margin-top: 39px;
+  margin-top: 70px;
   margin-bottom: -5px;
+}
+
+
+/*NEW QUESTION PAGE*/
+
+.container-question{
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+
+
+.container input[type="submit"]{
+  background-color: #2199e8;
+  padding: 10px 27px 10px 20px;
+  border: 1px solid #2199e8;
+  color: #fff;
+}
+
+form input {
+  background: #f0f0f0;
+  transition: background 2s, border-left 2s;
+}
+.container-question form input[type="text"]{
+  width: 100%;
 }
 
 
@@ -127,6 +173,8 @@ input[type="text"],input[type="password"]{
   font-size: 20px;
   position: relative;
   top: 60px;
+  margin-top: 50px;
+  left: 18%;
 }
 
 .stack-exchange{
@@ -138,40 +186,65 @@ input[type="text"],input[type="password"]{
 
 /*Question Page*/
 .question-header{
-  margin: 10%;
+  margin: 6%;
 }
 .question-header h3{
-  font-size: 20px;
+  font-size: 28px;
   color: #000;
   padding-top: 40px;
-  font-weight: bolder;
 }
 
 .posted-question{
   border-top: 1px solid #000;
 }
-.points{
+.question-info{
   float: left;
   padding-left: 40px;
   padding-top: 30px;
   padding-bottom: -20px;
-  font-weight: bold;
+  line-height: 60px;
+  width: 80%;
 }
-
 
 .points-controller{
   float: left;
-  list-style-type:none
+  list-style-type:none;
+  font-size: bold;
+}
+.points-controller span{
+   padding-left: 10px;
+   font-weight: bold;
 }
 
 .main{
   clear: both;
 }
 
-.question-points{
-  padding-left: 4.778px;
-  
+
+.new_comment_button{
+  margin-left: 85px;
+  margin-top: 7px;
+  font-size: 14px;
+  padding: 15px 10px 15px 10px;
+  float: left;
+  background:transparent;
+  border-radius: 10px;
+  transition: background-color 1s, ease;
 }
+
+.new_comment_button:hover{
+  background: #2199e8;
+  color: #fff;
+  transition: background 2s, color 2s;
+}
+
+
+
+.answer_container{
+  clear: both;
+  margin-top: 60px;
+}
+
 
 .comment-list{
   list-style-type:none;
@@ -183,8 +256,108 @@ input[type="text"],input[type="password"]{
 
 
 .button-for-form input[type="submit"] {
+  border: 1px solid #fff;
+  color: #ff0000;
+  font-size: 14px;
+  line-height: 45px;
+  margin-left: 60%;
+  background: transparent;
+  border-radius: 10px;
+
+}
+
+
+.button-for-form input[type="submit"]:hover{
+  background: #ff0000;
+  color: #fff;
+  transition: background 2s, color 1s;
+}
+
+.answer_comment_container{
+  list-style-type:none;
+  padding-left: 70px;
+  color: #000;
+  width: 90%;
+  position: relative;
+  top:-10px;
+}
+.answer_comment_container li{
+  padding-top: 30px;
+}
+
+.list_for_answer_comments{
+  list-style-type:none;
+  color: #000;
+  width: 80%;
+  padding:15px;
+}
+
+.list_for_answer_comments li{
+  padding-left: 10px;
+  border-top: 1px solid #eeeeee;
+  color: #8e8e8e;
+}
+
+
+.button-for-answer input[type="submit"]{
+  border: 1px solid #fff;
+  color: #ff0000;
+  font-size: 14px;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 25px;
+  margin-left: -15px;
+  background: transparent;
+  border-radius: 10px;
+
+}
+
+.button-for-answer input[type="submit"]:hover{
+  background: #ff0000;
+  color: #fff;
+  transition: background 2s, color 1s;
+}
+
+
+.new_comment_for_answer_button{
+  font-size: 16px;
+  border-radius: 10px;
+
+}
+
+.new_comment_for_answer_button:hover{
+  color: #2199e8;
+}
+
+.new_comment_for_answer_form input[type="submit"]{
   background-color: #2199e8;
-  padding: 10px 27px 10px 20px;
+  border: 1px solid #2199e8;
+  color: #fff;
+}
+
+#user_answer input[type="submit"]{
+  background-color: #2199e8;
+  border: 1px solid #2199e8;
+  color: #fff;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+#user_answer textarea{
+width: 80%;
+height: 190px;
+}
+
+
+
+#user_answer input[type="submit"]:hover{
+  background-color: #1776b2;
+  border: 1px solid #1776b2;
+  color: #fff;
+}
+
+.new_comment_form input[type="submit"]{
+  background-color: #2199e8;
   border: 1px solid #2199e8;
   color: #fff;
 }

@@ -16,7 +16,7 @@
   
   <script src="/js/application.js"></script>
 
-  <title></title>
+  <title>Stack Overflow</title>
 </head>
 <body>
 
@@ -27,14 +27,25 @@
 
   <% if logged_in? %>
   <li><a href="/logout">Logout</a></li>
-  <li><a href="/questions/new">Create Question</a></li>
+<!--   <li><a href="/questions/new">Create Question</a></li> -->
   <% else %>
   <li><a href="/login">Login</a></li>
-  <li><a href="/users/new">Register</a></li>
+  <li><a href="/users/new">Sign Up</a></li>
   <% end %>
       <li><input type="search" placeholder="Search Q&A"></li>    
 </ul>
 
+</div>
+
+<div class='top-right-menu-options'>
+  <ul>
+    <li><a href="/">Questions</a></li>
+    <li><a href="#">Users</a></li>
+    <li><a href="#">Jobs</a></li>
+    <% if logged_in? %>
+    <li><a href="/questions/new">Ask Questions</a></li>
+    <% end %>
+  </ul>
 </div>
 
 
