@@ -57,9 +57,11 @@ end
 delete '/answers/:id' do
   answer = Answer.find(params[:id])
   question = answer.question
-  if answer.user_id == session[:user_session_id]
-    answer.destroy
-    redirect "/questions/#{question.id}"
+  if request.xhr?
+    if answer.user_id == session[:user_session_id]
+      answer.destroy
+      redirect "/questions/#{question.id}"
+    end
   end
 end
 

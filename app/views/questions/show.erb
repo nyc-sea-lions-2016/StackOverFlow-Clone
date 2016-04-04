@@ -13,7 +13,7 @@
       <% if @all_comments %>
     <div id='question_comment'>
       <ul class="comment-list">
-        <% @all_comments.reverse.each do |comment| %>
+        <% @all_comments.each do |comment| %>
         <li><%= comment.content %></li>
         <% end %>
       </ul>
@@ -37,9 +37,9 @@
         <h6><%= @answers.count %> Answers</h6><br>
         <hr>
         <ul class='answer_list'>
-          <% @answers.each do |answer| %>
-          <%= erb :'_new_answer', locals:{answer: answer, comment: @comment}, layout: false %>
-          <% end %>
+            <% @answers.each do |answer| %>
+            <%= erb :'_new_answer', locals:{answer: answer, comment: @comment}, layout: false %>
+            <% end %>
         </ul>
       </div>
 
