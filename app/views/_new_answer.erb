@@ -1,25 +1,22 @@
-<div class='answer_comment_container'>
+<div class='individual_answer_container'>
   <li><%= answer.content %></li>
-  <ul class='list_for_answer_comments'>
-    <% answer.comments.reverse.each do |comment| %>
-    <li>
-      <%= comment.content %>
-    </li>
-    <% end %>
-  </ul>
-  <button data-id="<%= answer.id %>" class='new_comment_for_answer_button'>add a comment</button>
+    <ul class='comment-listing'>
+      <% answer.comments.each do |comment| %>
+      <%= erb :'_comments_answer_content', locals:{ comment: comment }, layout: false %>
+     <% end %>
+    </ul>
+    <button data-id="<%= answer.id %>" class='new_comment_for_answer_button'>add a comment</button>
 
-   <form id="answer-<%=answer.id%>" class="new_comment_for_answer_form hidden" action="/answers/comments" method="POST">
-      <input type ='hidden' name='answer[answer_id]' value="<%=answer.id%>">
-      <input type="hidden" name="comment[user_id]" value="<%=session[:user_session_id]%>">
-        <textarea rows="5" cols="30" name="comment[content]" placeholder="Comment"></textarea>
-      <input type="submit" value="Comment">
-    </form>
+     <form id="answer-<%=answer.id%>" class="new_comment_for_answer_form hidden" action="/answers/comments" method="POST">
+        <input type ='hidden' name='answer[answer_id]' value="<%=answer.id%>">
+        <input type="hidden" name="comment[user_id]" value="<%=session[:user_session_id]%>">
+          <textarea rows="5" cols="30" name="comment[content]" placeholder="Comment"></textarea>
+        <input type="submit" value="Comment">
+      </form>
 
-<!-- DELETE BUTTON -->
-<form class="button-for-answer" action="/answers/<%= answer.id %>" method="post">
-  <input type="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete Answer">
-</form>
-
+  <!-- DELETE BUTTON -->
+  <form class="button-for-answer" action="/answers/<%= answer.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input class='delete-button' type="submit" value="Delete Answer">
+  </form>
 </div>
