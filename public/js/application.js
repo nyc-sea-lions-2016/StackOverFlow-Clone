@@ -41,10 +41,9 @@ $(document).ready(function() {
       url: '/answers/comments',
       data: $(event.target).serialize()
     }).done(function(response){
-    $(event.target).siblings('ul').append('<li>' + response + '</li>');
-    $(event.target).hide();
-    $('.new_comment_for_answer_form').trigger('reset');
-    $(event.target).siblings('button').show();
+      $(event.target).hide().siblings('.new_comment_for_answer_button').show();
+      $(event.target).siblings('.comment-listing').append(response);
+      debugger;
   });
 });
 
@@ -77,5 +76,17 @@ $(document).ready(function() {
 
      })
    })
+
+//Delete Answer Button Ajax
+
+  $('.answer_container').on('click', '.delete-button', function(event){
+    event.preventDefault();
+    $.ajax({
+      type: 'DELETE',
+      url: $(event.target).parents().attr('action')
+    }).done(function(response){
+      $(event.target).parents('.individual_answer_container').remove();
+    });
+  });
 
 });

@@ -18,4 +18,9 @@ post '/answers/comments' do
   end
 end
 
+delete 'answers/comments/:id' do
+  @comment = Comment.find(:params[:id])
+  @comment.destroy
+end
+
 
