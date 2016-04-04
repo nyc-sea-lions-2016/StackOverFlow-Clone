@@ -30,7 +30,6 @@ $(document).ready(function() {
     $(event.target).hide();
     var formId = $(event.target).data().id
     $('#' + 'answer-' + formId).show();
-    // debugger;
   });
 
 
@@ -43,7 +42,6 @@ $(document).ready(function() {
     }).done(function(response){
       $(event.target).hide().siblings('.new_comment_for_answer_button').show();
       $(event.target).siblings('.comment-listing').append(response);
-      debugger;
   });
 });
 
@@ -86,6 +84,19 @@ $(document).ready(function() {
       url: $(event.target).parents().attr('action')
     }).done(function(response){
       $(event.target).parents('.individual_answer_container').remove();
+    });
+  });
+
+//Delete Answer Comment Ajax
+
+  $('.answer_container').on('click', '.delete-answer-comment-button', function(event) {
+    event.preventDefault();
+    debugger;
+    $.ajax({
+      type: 'DELETE',
+      url: $(event.target).parents().attr('action')
+    }).done(function(response) {
+      $(event.target).parents('.individual-comment-container').remove();
     });
   });
 

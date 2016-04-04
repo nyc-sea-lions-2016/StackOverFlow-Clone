@@ -1,13 +1,10 @@
 <div class='individual_answer_container'>
-    <li><%= answer.content %></li>
-      <% answer.comments.reverse.each do |comment| %>
-      <li>
-        <%= comment.content %>
-      </li>
-      <% end %>
-     <ul class='comment-listing'>
-
-     </ul>
+  <li><%= answer.content %></li>
+    <ul class='comment-listing'>
+      <% answer.comments.each do |comment| %>
+      <%= erb :'_comments_answer_content', locals:{ comment: comment }, layout: false %>
+     <% end %>
+    </ul>
     <button data-id="<%= answer.id %>" class='new_comment_for_answer_button'>add a comment</button>
 
      <form id="answer-<%=answer.id%>" class="new_comment_for_answer_form hidden" action="/answers/comments" method="POST">

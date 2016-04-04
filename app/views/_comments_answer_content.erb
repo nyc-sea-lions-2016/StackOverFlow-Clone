@@ -1,3 +1,7 @@
-<div class='individual-comment-container'>
-  <li><%= comment.content %></li>
-</div>
+  <div class='individual-comment-container'>
+    <li><%= comment.content %></li>
+      <form class="button-for-form" action="/comments/<%= comment.id %>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input class='delete-answer-comment-button' type="submit" value="Delete Comment">
+    </form>
+  </div>

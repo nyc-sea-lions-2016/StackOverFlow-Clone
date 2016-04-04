@@ -18,9 +18,13 @@ post '/answers/comments' do
   end
 end
 
-delete 'answers/comments/:id' do
+delete '/comments/:id' do
   @comment = Comment.find(:params[:id])
-  @comment.destroy
+  if request.xhr? && @comment
+    @comment.destroy
+  else
+    redirect '/'
+  end
 end
 
 

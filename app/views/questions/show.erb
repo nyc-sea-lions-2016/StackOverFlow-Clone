@@ -13,7 +13,7 @@
       <% if @all_comments %>
     <div id='question_comment'>
       <ul class="comment-list">
-        <% @all_comments.reverse.each do |comment| %>
+        <% @all_comments.each do |comment| %>
         <li><%= comment.content %></li>
         <% end %>
       </ul>
